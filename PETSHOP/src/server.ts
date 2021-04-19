@@ -1,12 +1,14 @@
-import express from "express";
-import {Request, Response} from "express";
+import express, { Request, Response } from "express";
+import { router } from "./config/routes";
+import { mongoose } from "./config/database";
 
-const app = express();
 console.clear();
+const app = express();
+const database = mongoose;
 
-app.get("/", (request: Request, response: Response) => {
-    response.send("Alô mundo!");
-});
+app.use(express.json()); //para dizer que a aplicação vai receber dados em json
+app.use(router);
+
 app.listen(3000, () => {
     console.log("O servidor está ok");
 });

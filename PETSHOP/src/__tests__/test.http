@@ -1,0 +1,15 @@
+###
+GET http://localhost:3000/
+###
+GET http://localhost:3000/cliente/listar/41911111111/81111111
+###
+POST http://localhost:3000/cliente/cadastrar
+Content-Type: application/json
+
+{
+    "nome": "Sebastiana da Silva",
+        "cpf": "111.111.111-11",
+        "idade": 40,
+        "telefone": "(41) 91111-1111",
+        "endereco": "81111111"
+}
