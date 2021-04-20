@@ -1,9 +1,11 @@
 import { Request, Response } from "express";
+import ClienteSchema from "../models/ClienteSchema";
+//import { ClienteSchema } from "../models/ClienteSchema";
 
 class ClienteController{
 
-   listar(request: Request, response: Response) {
-        response.send("Alô mundo!");
+   async listar(request: Request, response: Response) {
+        response.json(await ClienteSchema.find());
     }
 
     listarPorId(request: Request, response: Response) {
@@ -12,20 +14,22 @@ class ClienteController{
          const objeto = {
              nome: "Sebastiana da Silva",
              cpf: "111.111.111-11",
-             idade: 40,
              telefone,
              endereco
         };
          response.json(objeto);
      }
-    cadastrar(request: Request, response: Response) {
-        const pessoa = request.body;
-        console.log(pessoa);
-        const objeto = { 
-            msg: "Cliente cadastrado com sucesso!",
-            pessoa
-        };
-        response.json(objeto);
+    async cadastrar(request: Request, response: Response) {
+        //const cliente = request.body;
+        //ClienteSchema.create(cliente);
+        //As 2 linhas acima foram trocadas pela linha abaixo
+        try {
+            const cliente = await ClienteSchema.create(request.body);
+            response.status(201).json(cliente);
+        } catch (error) {
+            response.status(400).json(error);
+        }
+        
     }
 }
 
