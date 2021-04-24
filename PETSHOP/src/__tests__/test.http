@@ -1,7 +1,8 @@
 ###
 GET http://localhost:3000/cliente/listar
+
 ###
-GET http://localhost:3000/cliente/listar/41911111111/81111111
+GET http://localhost:3000/cliente/listar/60808b782a112c1c24dcadb8
 
 ### Requisição com sucesso
 POST http://localhost:3000/cliente/cadastrar
@@ -9,7 +10,7 @@ Content-Type: application/json
 
 {
     "nome": "Sebastiana da Silva",
-    "cpf": "111.111.111-11",
+    "cpf": "111.111.111.12",
     "telefone": "(41) 91111-1111",
     "endereco": "Rua Imperatriz, 150"
 }

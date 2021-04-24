@@ -5,8 +5,10 @@ const router = Router();
 const clienteController = new ClienteController();
 
 router.get("/cliente/listar", clienteController.listar);
-router.get("/cliente/listar/:telefone/:endereco", clienteController.listarPorId);
+router.get("/cliente/listar/:id", clienteController.listarPorId);
+//router.get("/cliente/listarPorCpf/", clienteController.listarPorCpf);
 router.post("/cliente/cadastrar", clienteController.cadastrar);
+//router.delete("/cliente/excluir", clienteController.excluir);
 
 
 export { router };

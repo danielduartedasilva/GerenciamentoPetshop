@@ -1,36 +1,45 @@
 import { Request, Response } from "express";
 import ClienteSchema from "../models/ClienteSchema";
-//import { ClienteSchema } from "../models/ClienteSchema";
+
 
 class ClienteController{
 
    async listar(request: Request, response: Response) {
-        response.json(await ClienteSchema.find());
+       try {
+           const clientes = await ClienteSchema.find();
+            response.status(200).json({ data: clientes, error: false, msg: "Lista de clientes atualizada!", });
+       } catch (error) {
+        response.status(400).json({ data: error, error: true, msg: "Não foi possível listar os clientes.", });
+       }  
     }
 
-    listarPorId(request: Request, response: Response) {
-        const { telefone, endereco } = request.params;
-        console.log(telefone, endereco);
-         const objeto = {
-             nome: "Sebastiana da Silva",
-             cpf: "111.111.111-11",
-             telefone,
-             endereco
-        };
-         response.json(objeto);
-     }
-    async cadastrar(request: Request, response: Response) {
-        //const cliente = request.body;
-        //ClienteSchema.create(cliente);
-        //As 2 linhas acima foram trocadas pela linha abaixo
+    // async listarPorId(request: Request, response: Response) {
+    //     const { id } = request.params;
+    //     const cliente = await ClienteSchema.findById(id);
+    //     response.status(200).json({ data: cliente, error: false, msg: "Cliente encontrado!", }); 
+    //  }
+
+    async listarPorId(request: Request, response: Response) {
         try {
-            const cliente = await ClienteSchema.create(request.body);
-            response.status(201).json(cliente);
-        } catch (error) {
-            response.status(400).json(error);
+        const { id } = request.params;
+        const cliente = await ClienteSchema.find({ _id: id });
+        if (cliente != null){
+            response.status(200).json({ data: cliente, error: false, msg: "Cliente encontrado!", });
         }
-        
+            response.status(400).json({ data: cliente, error: false, msg: "Cliente não encontrado!", });
+        } catch (error) {
+            response.status(400).json({ data: error, error: true, msg: "Formato de id não válido!", });
+        }   
+     }
+
+    async cadastrar(request: Request, response: Response) {
+        try {
+            //await para dar uma pausa antes de ir para o próximo processo, por isso usado o async, usados em operações que envolvem o banco de dados
+            const cliente = await ClienteSchema.create(request.body);
+            response.status(201).json({ data: cliente, error: false, msg: "Cliente cadastrado com sucesso!", });
+        } catch (error) {
+            response.status(400).json({ data: error, error: true, msg: "Não foi possível cadastrar o cliente.", });
+        }   
     }
 }
-
 export { ClienteController };

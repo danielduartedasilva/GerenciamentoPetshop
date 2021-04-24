@@ -22,5 +22,5 @@ const ClienteSchema = new Schema({
         timestamps: true,
     }
 );
-//export { ClienteSchema };
+export { ClienteSchema };
 export default model("clientes", ClienteSchema);
