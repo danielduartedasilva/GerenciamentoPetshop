@@ -32,6 +32,20 @@ class ClienteController{
         }   
      }
 
+     async excluir(request: Request, response: Response){
+         try {
+            const { id } = request.params;
+            const cliente = await ClienteSchema.deleteOne({ _id: id });
+            if (cliente != null){
+                response.status(200).json({ data: cliente, error: false, msg: "Cliente excluído!", });
+            }
+                response.status(400).json({ data: cliente, error: false, msg: "Cliente não encontrado!", });
+         } catch (error) {
+            response.status(400).json({ data: error, error: true, msg: "Formato de id não válido!", });
+         }
+        
+     }
+
     async cadastrar(request: Request, response: Response) {
         try {
             //await para dar uma pausa antes de ir para o próximo processo, por isso usado o async, usados em operações que envolvem o banco de dados
