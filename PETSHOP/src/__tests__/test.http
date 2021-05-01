@@ -39,3 +39,44 @@ Content-Type: application/json
     "telefone": "(41) 91111-1111",
     "endereco": "Rua Imperatriz, 150"
 }
+
+###Testes para funcionários###################################
+### Requisição com sucesso
+POST http://localhost:3000/funcionario/cadastrar
+Content-Type: application/json
+
+{
+    "nome": "Sebastiana Maria da Silva",
+    "cpf": "111.111.111.12",
+    "telefone": "(41) 91111-1111",
+    "endereco": "Rua Imperatriz, 150",
+    "funcao":"Tosador",
+    "estado":true
+}
+
+### Requisição com erro
+POST http://localhost:3000/funcionario/cadastrar
+Content-Type: application/json
+
+{
+    "nome": "Sebastiana Maria da Silva",
+    "cpf": "111.111.111.12",
+    "telefone": "(41) 91111-1111",
+    "endereco": "Rua Imperatriz, 150",
+}
+
+### Atualizar estado de funcionario
+PATCH http://localhost:3000/funcionario/alterar/608db8465a04b03ff01dc18f/1
+Content-Type: application/json
+
+{
+    "estado":true,
+}
+
+
+
+
+
+
+
+
