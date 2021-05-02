@@ -34,7 +34,7 @@ router.post("/atendimento/cadastrar", atendimentoController.cadastrar);
 router.put("/atendimento/alterar/:id", atendimentoController.alterar);
 
 //rotas para procedimento
-router.post("/atendimento/cadastrar", procedimentoController.cadastrar);
-router.put("/atendimento/alterar/:id", procedimentoController.alterar);
+router.post("/procedimento/cadastrar", procedimentoController.cadastrar);
+router.put("/procedimento/alterar/:id", procedimentoController.alterar);
 
 export { router };
