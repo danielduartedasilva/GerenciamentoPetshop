@@ -19,22 +19,22 @@ router.get("/cliente/listar/:id", clienteController.listarPorId);
 //router.get("/cliente/listarPorCpf/", clienteController.listarPorCpf);
 router.post("/cliente/cadastrar", clienteController.cadastrar);
 router.delete("/cliente/excluir/:id", clienteController.excluir);
-router.patch("/cliente/alterar/:id", clienteController.alterar);
+router.put("/cliente/alterar/:id", clienteController.alterar);
 
 //rotas para funcionários
 router.post("/funcionario/cadastrar", funcionarioController.cadastrar);
-router.patch("/funcionario/alterar/:id/:estado", funcionarioController.alterar);
+router.put("/funcionario/alterar/:id/:estado", funcionarioController.alterar);
 
 //rotas para animal
 router.post("/animal/cadastrar", animalController.cadastrar);
-router.patch("/funcionario/alterar/:id", animalController.alterar);
+router.put("/funcionario/alterar/:id", animalController.alterar);
 
 //rotas para atendimento
 router.post("/atendimento/cadastrar", atendimentoController.cadastrar);
-router.patch("/atendimento/alterar/:id", atendimentoController.alterar);
+router.put("/atendimento/alterar/:id", atendimentoController.alterar);
 
 //rotas para procedimento
-router.post("/atendimento/cadastrar", atendimentoController.cadastrar);
-router.patch("/atendimento/alterar/:id", atendimentoController.alterar);
+router.post("/atendimento/cadastrar", procedimentoController.cadastrar);
+router.put("/atendimento/alterar/:id", procedimentoController.alterar);
 
 export { router };
