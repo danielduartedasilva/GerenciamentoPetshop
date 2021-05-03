@@ -1,8 +1,8 @@
 import { model, Schema } from "mongoose";
 import { ClienteSchema } from "./ClienteSchema";
 import { FuncionarioSchema } from "./FuncionarioSchema";
-import ProcedimentoSchema from "./ProcedimentoSchema";
 import { AnimalSchema } from "./AnimalSchema";
+import { mongoose } from "../config/database";
 
 const AtendimentoSchema = new Schema(
   {
@@ -10,10 +10,10 @@ const AtendimentoSchema = new Schema(
       type: String,
       required: [true, "O campo nome do atendimento é obrigatório!"],
     },
-    cliente: ClienteSchema,
-    funcionario: FuncionarioSchema,
-    animal: AnimalSchema,
-    procedimento: [ProcedimentoSchema],
+    cliente: { type: ClienteSchema },
+    funcionario: { type: FuncionarioSchema },
+    animal: { type: AnimalSchema },
+    procedimento: [{type: mongoose.Schema.Types.ObjectId, ref: "animais", required: true}],
   },
   {
     timestamps: true,

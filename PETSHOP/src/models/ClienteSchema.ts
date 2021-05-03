@@ -1,4 +1,5 @@
 import { model, Schema } from "mongoose";
+import { mongoose } from "../config/database";
 
 const ClienteSchema = new Schema(
   {
@@ -18,6 +19,9 @@ const ClienteSchema = new Schema(
     endereco: {
       type: String,
     },
+    animal: [
+      { type: mongoose.Schema.Types.ObjectId, ref: "animais", required: true },
+    ],
   },
   {
     //Gera o criadoEm

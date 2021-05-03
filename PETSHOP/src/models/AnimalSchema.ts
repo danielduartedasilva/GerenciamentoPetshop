@@ -11,7 +11,7 @@ const AnimalSchema = new Schema(
       type: String,
       required: [true, "O campo tipo do animal é obrigatório!"],
     },
-    cliente: ClienteSchema,
+    cliente: { type: ClienteSchema },
   },
   {
     timestamps: true,
