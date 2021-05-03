@@ -1,5 +1,4 @@
 import { model, Schema } from "mongoose";
-import { AtendimentoSchema } from "./AtendimentoSchema";
 import { ClienteSchema } from "./ClienteSchema";
 
 const AnimalSchema = new Schema(

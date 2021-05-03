@@ -6,21 +6,17 @@ class AnimalController {
     try {
       const animal = await AnimalSchema.create(request.body);
 
-      response
-        .status(201)
-        .json({
-          data: animal,
-          error: false,
-          msg: "Animal cadastrado com sucesso!",
-        });
+      response.status(201).json({
+        data: animal,
+        error: false,
+        msg: "Animal cadastrado com sucesso!",
+      });
     } catch (error) {
-      response
-        .status(400)
-        .json({
-          data: error,
-          error: true,
-          msg: "Não foi possível cadastrar o animal.",
-        });
+      response.status(400).json({
+        data: error,
+        error: true,
+        msg: "Não foi possível cadastrar o animal.",
+      });
     }
   }
 

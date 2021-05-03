@@ -6,21 +6,17 @@ class FuncionarioController {
     try {
       const funcionario = await FuncionarioSchema.create(request.body);
 
-      response
-        .status(201)
-        .json({
-          data: funcionario,
-          error: false,
-          msg: "Funcionário cadastrado com sucesso!",
-        });
+      response.status(201).json({
+        data: funcionario,
+        error: false,
+        msg: "Funcionário cadastrado com sucesso!",
+      });
     } catch (error) {
-      response
-        .status(400)
-        .json({
-          data: error,
-          error: true,
-          msg: "Não foi possível cadastrar o funcionário.",
-        });
+      response.status(400).json({
+        data: error,
+        error: true,
+        msg: "Não foi possível cadastrar o funcionário.",
+      });
     }
   }
 

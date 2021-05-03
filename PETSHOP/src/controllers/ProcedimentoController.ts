@@ -6,21 +6,17 @@ class ProcedimentoController {
     try {
       const procedimento = await ProcedimentoSchema.create(request.body);
 
-      response
-        .status(201)
-        .json({
-          data: procedimento,
-          error: false,
-          msg: "Procedimento cadastrado com sucesso!",
-        });
+      response.status(201).json({
+        data: procedimento,
+        error: false,
+        msg: "Procedimento cadastrado com sucesso!",
+      });
     } catch (error) {
-      response
-        .status(400)
-        .json({
-          data: error,
-          error: true,
-          msg: "Não foi possível cadastrar o procedimento.",
-        });
+      response.status(400).json({
+        data: error,
+        error: true,
+        msg: "Não foi possível cadastrar o procedimento.",
+      });
     }
   }
 

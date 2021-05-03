@@ -1,4 +1,5 @@
 import { model, Schema } from "mongoose";
+
 const ClienteSchema = new Schema(
   {
     nome: {
@@ -23,5 +24,6 @@ const ClienteSchema = new Schema(
     timestamps: true,
   }
 );
+
 export { ClienteSchema };
 export default model("clientes", ClienteSchema);
