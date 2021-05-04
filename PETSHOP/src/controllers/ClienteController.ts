@@ -85,7 +85,7 @@ class ClienteController {
   async alterar(request: Request, response: Response) {
     try {
       const { id } = request.params;
-      const { nome, cpf, telefone, endereco } = request.body;
+      const { nome, cpf, telefone, endereco, animal } = request.body;
 
       const cliente = await ClienteSchema.findByIdAndUpdate(
         {
@@ -96,6 +96,7 @@ class ClienteController {
           cpf: cpf,
           telefone: telefone,
           endereco: endereco,
+          animal: animal,
         },
         {
           new: true,

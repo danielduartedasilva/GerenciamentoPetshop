@@ -23,8 +23,8 @@ class AnimalController {
   async alterar(request: Request, response: Response) {
     try {
       const { id } = request.params;
-      const { nome, tipo, cliente, atendimento } = request.body;
-
+      const { nome, tipo, cliente  } = request.body;
+             
       const animal = await AnimalSchema.findByIdAndUpdate(
         {
           _id: id,
@@ -33,7 +33,6 @@ class AnimalController {
           nome: nome,
           tipo: tipo,
           cliente: cliente,
-          atendimento: atendimento,
         },
         {
           new: true,
