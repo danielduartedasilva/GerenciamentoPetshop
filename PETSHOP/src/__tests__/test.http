@@ -1,36 +1,37 @@
-###Listar somente
+###Teste Cliente
+###Listar somente ok
 GET http://localhost:3000/cliente/listar
 
-###Listar somente por ID
-GET http://localhost:3000/cliente/listar/60808b782a112c1c24dcadb8
+###Listar somente por ID ok
+GET http://localhost:3000/cliente/listar/609177a4109d53407452a0c0
 
-###Apagar por ID
-DELETE  http://localhost:3000/cliente/excluir/60808889eea51d4310e36940
+###Apagar por ID ok
+DELETE  http://localhost:3000/cliente/excluir/60909f1b66c5d92a9cdd9262
 
-###Atualizar cliente
-PATCH http://localhost:3000/cliente/alterar/60806bacbb14e434f0134af2
+###Atualizar cliente ok
+PUT  http://localhost:3000/cliente/alterar/60913da892efd319a05238de
 Content-Type: application/json
 
 {
-    "nome": "Sebastiana da Silva Sauro",
+    "nome": "Sara Connor",
     "cpf": "111.111.111.12",
-    "telefone": "(41) 91111-1111",
-    "endereco": "Rua do Bolsonaro, 0"
+    "telefone": "(41) 11111-1111",
+    "endereco": "Rua Nivaldo Ramos, 1"
 }
 
 
-### Requisição com sucesso
+### Requisição com sucesso cadastrar cliente ok
 POST http://localhost:3000/cliente/cadastrar
 Content-Type: application/json
 
 {
-    "nome": "Sebastiana Maria da Silva",
-    "cpf": "111.111.111.12",
-    "telefone": "(41) 91111-1111",
-    "endereco": "Rua Imperatriz, 150"
+    "nome": "Sara Connor",
+    "cpf": "111.111.111.13",
+    "telefone": "(41) 11111-1111",
+    "endereco": "Rua Nivaldo Ramos, 1"
 }
 
-### Requisição com erro
+### Requisição com erro ok
 POST http://localhost:3000/cliente/cadastrar
 Content-Type: application/json
 
@@ -40,7 +41,18 @@ Content-Type: application/json
     "endereco": "Rua Imperatriz, 150"
 }
 
-###Testes para funcionários###################################
+###atualizar o cliente com o novo animal
+PUT  http://localhost:3000/cliente/alterar/60909f1b66c5d92a9cdd9262
+Content-Type: application/json
+
+{
+    "nome": "Ronaldo Gomes",
+    "cpf": "587.159.145.23",
+    "telefone": "(41) 91251-5816",
+    "endereco": "Rua Nivaldo Ramos, 5",
+    "animal":["60909e6566c5d92a9cdd9260"]
+}
+
 ### Requisição com sucesso
 POST http://localhost:3000/funcionario/cadastrar
 Content-Type: application/json
@@ -65,10 +77,72 @@ Content-Type: application/json
     "endereco": "Rua Imperatriz, 150",
 }
 
+###TESTES PARA ANIMAL #####################################################
+###Listar Animal
+GET http://localhost:3000/animal/listar
+
+###cadastrar animal
+POST  http://localhost:3000/animal/cadastrar
+Content-Type: application/json
+
+{
+    "nome": "Guiodae",
+    "tipo": "CACHORRO",
+    "cliente": {
+    "_id": "609177a4109d53407452a0c0"
+    }
+}
+
+###cadastrar animal
+POST  http://localhost:3000/animal/cadastrar/
+Content-Type: application/json
+
+{
+    "nome": "Montanha",
+    "tipo": "pincher 2",
+    "cliente": {
+        "nome":"Ronaldo Gomes",
+        "cpf":"587.159.145.23",
+        "telefone":"(41) 91251-5816",
+        "endereco":"Rua Nivaldo Ramos, 5"
+    }
+}
+
+###atualizar o animal com o cliente
+PUT  http://localhost:3000/animal/alterar/609092290ce2e833d8095da2/609092d50ce2e833d8095da4
+Content-Type: application/json
+
+{
+    "nome": "Fifi",
+    "tipo": "gato",
+
+}
+
+###Testes para funcionários###################################
+### Requisição com sucesso
+POST http://localhost:3000/funcionario/cadastrar
+Content-Type: application/json
+{
+    "nome": "Sebastiana Maria da Silva",
+    "cpf": "111.111.111.12",
+    "telefone": "(41) 91111-1111",
+    "endereco": "Rua Imperatriz, 150",
+    "funcao":"Tosador",
+    "estado":true
+}
+
+### Requisição com erro
+POST http://localhost:3000/funcionario/cadastrar
+Content-Type: application/json
+{
+    "nome": "Sebastiana Maria da Silva",
+    "cpf": "111.111.111.12",
+    "telefone": "(41) 91111-1111",
+    "endereco": "Rua Imperatriz, 150",
+}
 ### Atualizar estado de funcionario
 PATCH http://localhost:3000/funcionario/alterar/608db8465a04b03ff01dc18f/1
 Content-Type: application/json
-
 {
     "estado":true,
 }

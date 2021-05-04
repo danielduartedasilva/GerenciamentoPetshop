@@ -1,26 +1,40 @@
 import { model, Schema } from "mongoose";
-const ClienteSchema = new Schema({
+import { mongoose } from "../config/database";
+const ClienteSchema  = new Schema({
     nome: { 
         type: String, 
-        required: [true,"O campo nome do cliente é obrigatório!"],
+        required: [true,"O campo NOME do CLIENTE é obrigatório!"],
+        min: [5, "O campo NOME deve ter  no mínimo 5 carateres!"],
+        max: [128, "O campo NOME deve ter  no máximo 128 carateres!"],
     },
     cpf: {
         type: String,
-        required: [true,"O campo cpf do cliente é obrigatório!"],
-        min: [14, "O campo deve ter 14 dígitos. Exemplo: 111.111.111-11"],
+        required: [true,"O campo CPF do CLIENTE é obrigatório!"],
+        min: [11, "O campo CPF deve ter no mínimo 11 dígitos. Exemplo: 11111111111"],
+        max: [14, "O campo CPF deve ter no máximo 14 dígitos. Exemplo: 111.111.111-11"],
     },
     telefone: {
         type: String,
-        required: [true,"O campo telefone do cliente é obrigatório!"],
+        required: [true,"O campo TELEFONE do CLIENTE é obrigatório!"],
+        min: [11, "O campo TELEFONE deve ter no mínimo 11 dígitos. Exemplo: 41999887766"],
+        max: [14, "O campo TELEFONE deve ter no máximo 14 dígitos. Exemplo: (41)99988-7766"],
     },
     endereco: {
        type: String,
+       required: [true, "O campo ENDERECO do CLIENTE é obrigatório!"],
+      min: [5, "O campo ENDERECO deve ter no mínimo 5 caracteres!"],
     },
+    animal: [
+        {
+        type: mongoose.Schema.Types.ObjectId, 
+        ref: "animais", 
+        required: false
+    }],
 },
     {
         //Gera o criadoEm
         timestamps: true,
     }
 );
-export { ClienteSchema };
+
 export default model("clientes", ClienteSchema);

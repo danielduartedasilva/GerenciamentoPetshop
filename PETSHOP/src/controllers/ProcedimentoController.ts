@@ -3,62 +3,69 @@ import ProcedimentoSchema from "../models/ProcedimentoSchema";
 
 class ProcedimentoController{
     async cadastrar(request: Request, response: Response) {
+        if (!request.body) {
+            response.status(404).json({
+              error: true,
+              msg: "Está faltando o body da request!",
+            });
+          }
+          const { nome } = request.body;
         try {
-            const procedimento = await ProcedimentoSchema.create(request.body);
+            const procedimento = await ProcedimentoSchema.findOne({ nome: nome});
+            if(procedimento == null){
+            const result = await ProcedimentoSchema.create(request.body);
+            response.status(201).json({ data: result, error: false, msg: "Procedimento cadastrado com sucesso!", });
+            response.status(404).json({
+                data: procedimento,
+                error: true,
+        msg: "Procedimento já cadastrado no sistema!",
+      });
 
-            response.status(201).json({ data: procedimento, error: false, msg: "Procedimento cadastrado com sucesso!", });
-        } catch (error) {
-            response.status(400).json({ data: error, error: true, msg: "Não foi possível cadastrar o procedimento.", });
-        }   
     }
-
+        } catch (err) {
+            response.status(400).json({ data: err, error: true, msg: "Não foi possível cadastrar o procedimento.", });
+        }  
+      } 
+    
     async alterar(request: Request, response: Response) {
+        if (!request.body) {
+            response.status(404).json({
+              error: true,
+              msg: "Está faltando o body da request!",
+            });
+          }
+          const { nome } = request.params;
+          const { valor } = request.body;
         try {            
-            const { id } = request.params;
-            const { nome, valor } = request.body;
-            
-            const procedimento = await ProcedimentoSchema.findByIdAndUpdate(
-                {
-                    _id: id
-                },
-                {
-                    nome: nome,
-                    valor:valor,
-                },
-                {
-                    new:true,
-                    useFindAndModify: false,
-                } 
-            );
-
-            if(procedimento != null){
-                response.status(200).json(
-                    {
-                        data: procedimento,
-                        error:false,
-                        msg:"O procedimento foi atualizado!"
-                    }
-                );
-            }
-            else{
-                response.status(404).json(
-                    {
-                        data: "Falha",
-                        error:true,
-                        msg:"O procedimento não foi encontrado!"
-                    }
-                );
-            }
-        } catch (error) {
-            response.status(404).json(
-                {
-                    data: error,
-                    error:true,
-                    msg:"O id informado não é válido!"
-                }
-            );
-        }
+            const procedimento = await ProcedimentoSchema.findOne({ nome: nome });
+      if (procedimento != null) {
+        const result = await ProcedimentoSchema.updateOne(
+          { nome: nome },
+          {
+            $set: {
+              valor: valor,
+            },
+          }
+        );
+        response.status(200).json({
+            data: result,
+            error: false,
+            msg: "Procedimento atualizado com sucesso!",
+        });
+      }
+      response.status(404).json({
+        data: procedimento,
+        error: true,
+        msg: "Procedimento não encontrado, cadastreo!",
+      });
+    } catch (err) {
+      response.status(200).json({
+        data: err,
+        error: true,
+        msg: "Procedimento não encontrado!",
+      });
     }
+  }
 }
 
-export { ProcedimentoController}
+export { ProcedimentoController };

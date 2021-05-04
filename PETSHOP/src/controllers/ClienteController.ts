@@ -4,6 +4,30 @@ import ClienteSchema from "../models/ClienteSchema";
 
 class ClienteController{
 
+    async cadastrar(request: Request, response: Response) {
+        if (!request.body) {
+          response.status(404).json({
+            error: true,
+            msg: "Está faltando o body da request!",
+          });
+        }
+        try {
+            const cliente = await ClienteSchema.create(request.body);
+            response.status(201).json({
+              data: cliente,
+              error: false,
+              msg: "Cliente cadastrado com sucesso!",
+            });
+          } catch (error) {
+            response.status(400).json({
+              data: error,
+              error: true,
+              msg: "Não foi possível cadastrar o cliente.",
+            });
+          }
+        }
+      
+
    async listar(request: Request, response: Response) {
        try {
            const clientes = await ClienteSchema.find();
@@ -38,73 +62,56 @@ class ClienteController{
             const { id } = request.params;
             const cliente = await ClienteSchema.deleteOne({ _id: id });
             if (cliente != null){
-                response.status(200).json({ data: cliente, error: false, msg: "Cliente excluído!", });
+                response.status(200).json({ data: cliente, error: false, msg: "Cliente excluído!" });
             }
-                response.status(400).json({ data: cliente, error: false, msg: "Cliente não encontrado!", });
+                response.status(400).json({ data: cliente, error: false, msg: "Cliente não encontrado!" });
          } catch (error) {
-            response.status(400).json({ data: error, error: true, msg: "Formato de id não válido!", });
+            response.status(400).json({ data: error, error: true, msg: "Formato de id não válido!" });
          }
         
      }
-
-    async cadastrar(request: Request, response: Response) {
-        try {
-            //await para dar uma pausa antes de ir para o próximo processo, 
-            //por isso usado o async, usados em operações que envolvem o banco de dados
-            const cliente = await ClienteSchema.create(request.body);
-            response.status(201).json({ data: cliente, error: false, msg: "Cliente cadastrado com sucesso!", });
-        } catch (error) {
-            response.status(400).json({ data: error, error: true, msg: "Não foi possível cadastrar o cliente.", });
-        }   
+     async alterar(request: Request, response: Response) {
+        if (!request.body) {
+          response.status(404).json({
+            error: true,
+            msg: "Está faltando o body da request!",
+        });
+      }
+      const { id } = request.params;
+    const { nome, cpf, telefone, endereco } = request.body;
+    try {
+        const cliente = await ClienteSchema.findOne({ _id: id });
+      if (cliente != null) {
+        const result = await ClienteSchema.updateOne(
+          { _id: id },
+          {
+            $set: {
+              nome: nome,
+              cpf: cpf,
+              telefone: telefone,
+              endereco: endereco,
+            },
+          }
+        );
+        response.status(200).json({
+            data: result,
+          error: false,
+          msg: "Cliente atualizado com sucesso!",
+        });
+      }
+      response.status(404).json({
+        data: cliente,
+        error: true,
+        msg: "Cliente não encontrado!",
+      });
+    } catch (err) {
+      response.status(200).json({
+        data: err,
+        error: true,
+        msg: "Cliente não encontrado!",
+      });
     }
-    async alterar(request: Request, response: Response) {
-        try {
-            const { id } = request.params;
-            const { nome, cpf, telefone, endereco } = request.body;
-
-            const cliente = await ClienteSchema.findByIdAndUpdate(
-                {
-                    _id: id
-                },
-                {
-                    nome: nome,
-                    cpf: cpf,
-                    telefone: telefone,
-                    endereco: endereco,
-                },
-                {
-                    new:true,
-                    useFindAndModify: false,
-                } 
-            );
-
-            if(cliente != null){
-                response.status(200).json(
-                    {
-                        data: cliente,
-                        error:false,
-                        msg:"O cliente foi atualizado!"
-                    }
-                );
-            }
-            else{
-                response.status(404).json(
-                    {
-                        data: "Falha",
-                        error:true,
-                        msg:"O cliente não foi encontrado!"
-                    }
-                );
-            }
-        } catch (error) {
-            response.status(404).json(
-                {
-                    data: error,
-                    error:true,
-                    msg:"O id informado não é válido!"
-                }
-            );
-        }
-    }
+  }
 }
+
 export { ClienteController };

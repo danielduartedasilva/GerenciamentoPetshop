@@ -1,24 +1,43 @@
 import { model,Schema} from 'mongoose';
-import { ClienteSchema } from './ClienteSchema';
-import { FuncionarioSchema } from './FuncionarioSchema';
-import  ProcedimentoSchema  from './ProcedimentoSchema';
-import  {AnimalSchema}  from './AnimalSchema';
+import { mongoose } from "../config/database";
 
 const AtendimentoSchema = new Schema(
    {
       nome:{
-         type:String,
+         type: String,
          required: [true,"O campo nome do atendimento é obrigatório!"],
       },
-      cliente: ClienteSchema,
-      funcionario:FuncionarioSchema,
-      animal: AnimalSchema,
-      procedimento:[ProcedimentoSchema],
+      cliente: {
+         type: mongoose.Schema.Types.ObjectId,
+            ref: "clientes",
+            required: true,
+      },
+      funcionario: {
+         type: mongoose.Schema.Types.ObjectId,
+         ref: "funcionarios",
+         required: true,
+      },
+      animal: {
+         type: mongoose.Schema.Types.ObjectId,
+         ref: "animais",
+         required: true,
+      },
+      procedimento: [
+         {
+         type: mongoose.Schema.Types.ObjectId, 
+         ref: "procedimentos", 
+         required: true
+      },
+   ],
+   // Precisa ser melhor desenvolvido
+   data_agendamento: {
+      type: Date,
+      required: true,
+   },
    },
    {
         timestamps: true,
    }
 );
 
-export { AtendimentoSchema};
 export default model("atendimentos",AtendimentoSchema);
