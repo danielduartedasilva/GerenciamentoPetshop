@@ -33,34 +33,42 @@ class AnimalController {
         msg: "Está faltando o body da request!",
       });
     }
+
     const { id } = request.params;
     const { nome, cliente } = request.body;
-
+    
     try {
       const animal = await AnimalSchema.findOne({ _id: id });
+
+     
       if (animal != null) {
         const result = await AnimalSchema.updateOne(
-          { _id: id },
+          {  _id: id },
           {
-            $set: {
+            $set:{
               nome: nome,
-              cliente: cliente,
-            },
+              cliente: cliente,  
+            }    
           }
-        );
-        response.status(200).json({
-          data: result,
-          error: false,
-          msg: "Animal atualizado com sucesso!",
-        });
+        ); 
+        if(result != null){
+          response.status(200).json({
+            data: result,
+            error: false,
+            msg: "Animal atualizado com sucesso!",
+          });
+        }
+        else{
+          response.status(404).json({
+            data: animal,
+            error: true,
+            msg: "Não foi possível atualizar!",
+          });    
+        }
       }
-      response.status(404).json({
-        data: animal,
-        error: true,
-        msg: "Animal não encontrado!",
-      });
+      
     } catch (err) {
-      response.status(200).json({
+      response.status(404).json({
         data: err,
         error: true,
         msg: "Animal não encontrado!",

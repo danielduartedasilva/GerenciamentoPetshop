@@ -125,5 +125,45 @@ class ClienteController {
       });
     }
   }
+
+  async alterarListaAnimais(request: Request, response: Response) {
+    if (!request.body) {
+      response.status(404).json({
+        error: true,
+        msg: "Está faltando o body da request!",
+      });
+    }
+    const { id } = request.params;
+    const { animal } = request.body;
+    try {
+      const cliente = await ClienteSchema.findOne({ _id: id });
+      if (cliente != null) {
+        const result = await ClienteSchema.updateOne(
+          { _id: id },
+          {
+            $push: {
+              animal: animal
+            }
+          }
+        );
+        response.status(200).json({
+          data: result,
+          error: false,
+          msg: "Animal inserido no cliente!",
+        });
+      }
+      response.status(404).json({
+        data: cliente,
+        error: true,
+        msg: "Cliente não encontrado!",
+      });
+    } catch (err) {
+      response.status(200).json({
+        data: err,
+        error: true,
+        msg: "Cliente não encontrado!",
+      });
+    }
+  }
 }
 export { ClienteController };
