@@ -82,6 +82,7 @@ class ClienteController {
       });
     }
   }
+
   async alterar(request: Request, response: Response) {
     try {
       const { id } = request.params;
