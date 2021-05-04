@@ -24,5 +24,4 @@ const AnimalSchema = new Schema(
   }
 );
 
-export { AnimalSchema };
 export default model("animais", AnimalSchema);
