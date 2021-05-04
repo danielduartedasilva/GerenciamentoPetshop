@@ -1,128 +1,145 @@
-###Listar somente
+### TESTES PARA CLIENTE ###
+### Cadastrar CLIENTE
+POST http://localhost:3000/cliente/cadastrar
+Content-Type: application/json
+
+{
+    "nome": "Gabriel Luiz Deina",
+    "cpf": "09798455878",
+    "telefone": "(41) 98783-6468",
+    "endereco": "Rua Jabuticaba, 7"
+}
+
+### Listar todos os CLIENTES cadastrados
 GET http://localhost:3000/cliente/listar
 
-###Listar somente por ID
+### Listar CLIENTE somente por ID
 GET http://localhost:3000/cliente/listar/
 
-###Apagar por ID
+### Apagar CLIENTE por ID
 DELETE  http://localhost:3000/cliente/excluir/
 
-###Atualizar cliente
-PUT  http://localhost:3000/cliente/alterar/60806bacbb14e434f0134af2
+### Atualizar CLIENTE por ID
+PUT  http://localhost:3000/cliente/alterar/609197106ea7be3fa893f4f4
 Content-Type: application/json
 
 {
     "nome": "Ronaldo Gomes",
-    "cpf": "587.159.145.23",
-    "telefone": "(41) 91251-5816",
-    "endereco": "Rua Nivaldo Ramos, 5"
+    "cpf": "09798455878",
+    "telefone": "(41) 98783-6468",
+    "endereco": "Rua desembargador Cid Campelo 7390"
 }
-### Requisição com sucesso cadastrar cliente
-POST http://localhost:3000/cliente/cadastrar
+###Atualizar listas de animais do cliente
+PUT  http://localhost:3000/cliente/alterarAnimais/609197106ea7be3fa893f4f4
 Content-Type: application/json
 
 {
-    "nome": "Ronaldo Gomes",
-    "cpf": "587.159.145.23",
-    "telefone": "(41) 91251-5816",
-    "endereco": "Rua Nivaldo Ramos, 5",
-    "animal":"60909e6566c5d92a9cdd9260"
+    "animal": "60919d2df1d0993eac71950c"    
 }
-###atualizar o cliente com o novo animal
-PUT  http://localhost:3000/cliente/alterar/60909f1b66c5d92a9cdd9262
+###Atualizar listas de animais do cliente com outro animal
+PUT  http://localhost:3000/cliente/alterarAnimais/609197106ea7be3fa893f4f4
 Content-Type: application/json
 
 {
-    "nome": "Ronaldo Gomes",
-    "cpf": "587.159.145.23",
-    "telefone": "(41) 91251-5816",
-    "endereco": "Rua Nivaldo Ramos, 5",
-    "animal":["60909e6566c5d92a9cdd9260"]
+    "animal": "60919df950c8363f3cf15af8"    
 }
-### Requisição com erro
-POST http://localhost:3000/cliente/cadastrar
-Content-Type: application/json
 
-{
-    "nome": "Sebastiana da Silva",
-    "telefone": "(41) 91111-1111",
-    "endereco": "Rua Imperatriz, 150"
-}
-###TESTES PARA ANIMAL #####################################################
-###cadastrar animal
+### TESTES PARA ANIMAL ###
+### Cadastrar ANIMAL
 POST  http://localhost:3000/animal/cadastrar
 Content-Type: application/json
 
 {
-    "nome": "Fifi",
-    "tipo": "gato",
+    "nome": "Thor",
+    "tipo": "cachorro",
     "cliente": {
-        "nome":"Ronaldo Gomes",
-        "cpf":"587.159.145.23",
-        "telefone":"(41) 91251-5816",
-        "endereco":"Rua Nivaldo Ramos, 5"
+        "_id": "609197106ea7be3fa893f4f4"
     }
 }
-###cadastrar animal
+
+### Cadastrar ANIMAL
 POST  http://localhost:3000/animal/cadastrar/
 Content-Type: application/json
 
 {
     "nome": "Montanha",
-    "tipo": "pincher 2",
+    "tipo": "cachorro",
     "cliente": {
-        "nome":"Ronaldo Gomes",
-        "cpf":"587.159.145.23",
-        "telefone":"(41) 91251-5816",
-        "endereco":"Rua Nivaldo Ramos, 5"
+        "_id": "609197106ea7be3fa893f4f4"
     }
 }
-###atualizar o animal com o cliente
-PUT  http://localhost:3000/animal/alterar/609092290ce2e833d8095da2/609092d50ce2e833d8095da4
+
+### Atualizar o ANIMAL com o cliente
+PUT  http://localhost:3000/animal/alterar/60919d2df1d0993eac71950c
 Content-Type: application/json
 
 {
-    "nome": "Fifi",
-    "tipo": "gato",
-
+    "nome": "Sammy",
+    "tipo":"cachorro",
+    "cliente": {
+        "_id": "609197106ea7be3fa893f4f4"
+    }
 }
-###Testes para funcionários###################################
-### Requisição com sucesso
+
+### TESTES PARA FUNCIONARIO###
+### Cadastrar FUNCIONARIO
 POST http://localhost:3000/funcionario/cadastrar
+Content-Type: application/json
+
+{
+    "nome": "Pedro Sabadin",
+    "cpf": "100.111.111.12",
+    "telefone": "(41) 92222-1111",
+    "endereco": "Rua Gavião, 150",
+    "funcao":"veterinário"
+}
+
+### Atualizar FUNCIONARIO
+PUT http://localhost:3000/funcionario/alterar/6091bc6da1c3523f207d4145
 Content-Type: application/json
 
 {
     "nome": "Sebastiana Maria da Silva",
     "cpf": "111.111.111.12",
     "telefone": "(41) 91111-1111",
-    "endereco": "Rua Imperatriz, 150",
-    "funcao":"Tosador",
-    "estado":true
+    "endereco": "Rua Maria, 150",
+    "funcao":"veterinário"
 }
 
-### Requisição com erro
-POST http://localhost:3000/funcionario/cadastrar
+### TESTES PARA ATENDIMENTO ###
+### Cadastrar ATENDIMENTO
+POST http://localhost:3000/atendimento/cadastrar
 Content-Type: application/json
 
 {
-    "nome": "Sebastiana Maria da Silva",
-    "cpf": "111.111.111.12",
-    "telefone": "(41) 91111-1111",
-    "endereco": "Rua Imperatriz, 150",
+    "nome": "Tosa",
+    "cliente":{
+        "_id":"609197106ea7be3fa893f4f4"
+    },
+    "funcionario":{
+        "_id": "6091bc6da1c3523f207d4145"        
+    },
+    "animal":{
+        "_id": "60919d2df1d0993eac71950c"
+    },
+    "procedimento":{
+        "_id": "6091bf4d6bbde036a835a5e5"
+    },
+    "data_agendamento":"05-04-2021"
 }
-
-### Atualizar estado de funcionario
-PATCH http://localhost:3000/funcionario/alterar/608db8465a04b03ff01dc18f/1
+###Cadastrar procedimento
+POST http://localhost:3000/procedimento/cadastrar
 Content-Type: application/json
 
 {
-    "estado":true,
+    "nome": "Tosa",
+    "valor": 20.00
 }
+### Atualizar VALOR do PROCEDIMENTO
+PUT http://localhost:3000/procedimento/alterar
+Content-Type: application/json
 
-
-
-
-
-
-
-
+{
+    "nome": "Tosa",
+    "valor": 30.00
+}
