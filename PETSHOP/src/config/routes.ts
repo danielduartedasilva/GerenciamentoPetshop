@@ -23,18 +23,19 @@ router.put("/cliente/alterar/:id", clienteController.alterar);
 
 //rotas para funcionários
 router.post("/funcionario/cadastrar", funcionarioController.cadastrar);
-router.put("/funcionario/alterar/:id/:estado", funcionarioController.alterar);
+router.put("/funcionario/alterar/:id", funcionarioController.alterar);
 
 //rotas para animal
 router.post("/animal/cadastrar", animalController.cadastrar);
-router.put("/animal/alterar/:animal_id/:cliente_id", animalController.alterar);
+router.put("/animal/alterar/:animal_id", animalController.alterarPorId);
 
 //rotas para atendimento
 router.post("/atendimento/cadastrar", atendimentoController.cadastrar);
-router.put("/atendimento/alterar/:id", atendimentoController.alterar);
+router.get("/atendimento/listar", atendimentoController.listar);
+router.put("/atendimento/alterar/:id", atendimentoController.alterarPorId);
 
 //rotas para procedimento
 router.post("/procedimento/cadastrar", procedimentoController.cadastrar);
-router.put("/procedimento/alterar/:id", procedimentoController.alterar);
+router.put("/procedimento/alterar/", procedimentoController.alterar);
 
 export { router };

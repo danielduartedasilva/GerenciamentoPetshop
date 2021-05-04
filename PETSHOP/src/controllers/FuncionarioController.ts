@@ -3,11 +3,18 @@ import FuncionarioSchema from "../models/FuncionarioSchema";
 
 class FuncionarioController {
   async cadastrar(request: Request, response: Response) {
-    try {
-      const funcionario = await FuncionarioSchema.create(request.body);
+    if (!request.body) {
+      response.status(404).json({
+        error: true,
+        msg: "Está faltando o body da request!",
+      });
+    }
+    const funcionario = request.body;
 
+    try {
+      const result = await FuncionarioSchema.create(funcionario);
       response.status(201).json({
-        data: funcionario,
+        data: result,
         error: false,
         msg: "Funcionário cadastrado com sucesso!",
       });
@@ -21,40 +28,46 @@ class FuncionarioController {
   }
 
   async alterar(request: Request, response: Response) {
+    if (!request.body) {
+      response.status(404).json({
+        error: true,
+        msg: "Está faltando o body da request!",
+      });
+    }
+    const { id } = request.params;
+    const { nome, cpf, telefone, endereco, funcao } = request.body;
+
     try {
-      const { id, estado } = request.params;
-
-      const funcionario = await FuncionarioSchema.findByIdAndUpdate(
-        {
-          _id: id,
-        },
-        {
-          estado: estado,
-        },
-        {
-          new: true,
-          useFindAndModify: false,
-        }
-      );
-
+      const funcionario = await FuncionarioSchema.findOne({ _id: id });
       if (funcionario != null) {
+        const result = await FuncionarioSchema.updateOne(
+          { _id: id },
+          {
+            $set: {
+              nome: nome,
+              cpf: cpf,
+              telefone: telefone,
+              endereco: endereco,
+              funcao: funcao,
+            },
+          }
+        );
         response.status(200).json({
-          data: funcionario,
+          data: result,
           error: false,
-          msg: "O estado do funcionário foi atualizado!",
-        });
-      } else {
-        response.status(404).json({
-          data: "Falha",
-          error: true,
-          msg: "O funcionário não foi encontrado!",
+          msg: "Funcionário atualizado com sucesso!",
         });
       }
-    } catch (error) {
       response.status(404).json({
-        data: error,
+        data: funcionario,
         error: true,
-        msg: "O id e/ou estado informado não é válido!",
+        msg: "Funcionário não encontrado!",
+      });
+    } catch (err) {
+      response.status(200).json({
+        data: err,
+        error: true,
+        msg: "Funcionário não encontrada!",
       });
     }
   }

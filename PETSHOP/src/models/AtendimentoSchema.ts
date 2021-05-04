@@ -29,6 +29,11 @@ const AtendimentoSchema = new Schema(
         required: true,
       },
     ],
+    // Precisa ser melhor desenvolvido
+    data_agendamento: {
+      type: Date,
+      required: true
+    }
   },
   {
     timestamps: true,
