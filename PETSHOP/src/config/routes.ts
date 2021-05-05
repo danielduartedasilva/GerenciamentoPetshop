@@ -11,7 +11,7 @@ const clienteController = new ClienteController();
 const funcionarioController = new FuncionarioController();
 const animalController = new AnimalController();
 const atendimentoController = new AtendimentoController();
-const procedimentoController =  new ProcedimentoController();
+const procedimentoController = new ProcedimentoController();
 
 //rotas para clientes
 router.get("/cliente/listar", clienteController.listar);
@@ -28,7 +28,6 @@ router.put("/funcionario/alterar/:id", funcionarioController.alterar);
 //rotas para animal
 router.post("/animal/cadastrar", animalController.cadastrar);
 router.put("/animal/alterar/:animal_id", animalController.alterarPorId);
-router.get("/animal/listar", animalController.listar);
 
 //rotas para atendimento
 router.post("/atendimento/cadastrar", atendimentoController.cadastrar);

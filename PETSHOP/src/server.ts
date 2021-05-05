@@ -10,5 +10,5 @@ app.use(express.json()); //para dizer que a aplicação vai receber dados em jso
 app.use(router);
 
 app.listen(3000, () => {
-    console.log("O servidor está ok");
+  console.log("O servidor está ok");
 });

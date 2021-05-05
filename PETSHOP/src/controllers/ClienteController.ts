@@ -26,7 +26,6 @@ class ClienteController{
             });
           }
         }
-      
 
    async listar(request: Request, response: Response) {
        try {
@@ -37,25 +36,24 @@ class ClienteController{
        }  
     }
 
-    // async listarPorId(request: Request, response: Response) {
-    //     const { id } = request.params;
-    //     const cliente = await ClienteSchema.findById(id);
-    //     response.status(200).json({ data: cliente, error: false, msg: "Cliente encontrado!", }); 
-    //  }
-
-    async listarPorId(request: Request, response: Response) {
-        try {
-            const { id } = request.params;
-            const cliente = await ClienteSchema.find({ _id: id });
-
-            if (cliente != null){
-                response.status(200).json({ data: cliente, error: false, msg: "Cliente encontrado!", });
-            }
-                response.status(400).json({ data: cliente, error: false, msg: "Cliente não encontrado!", });
-            } catch (error) {
-                response.status(400).json({ data: error, error: true, msg: "Formato de id não válido!", });
-            }   
-     }
+  async listarPorId(request: Request, response: Response) {
+    try {
+      const { id } = request.params;
+      const cliente = await ClienteSchema.find({ _id: id });
+      if (cliente != null) {
+        response
+          .status(200)
+          .json({ data: cliente, error: false, msg: "Cliente encontrado!" });
+      }
+      response
+        .status(400)
+        .json({ data: cliente, error: false, msg: "Cliente não encontrado!" });
+      } catch (error) {
+        response
+          .status(400)
+          .json({ data: error, error: true, msg: "Formato de id não válido!" });
+      }
+    }
 
      async excluir(request: Request, response: Response){
          try {
@@ -68,7 +66,6 @@ class ClienteController{
          } catch (error) {
             response.status(400).json({ data: error, error: true, msg: "Formato de id não válido!" });
          }
-        
      }
      async alterar(request: Request, response: Response) {
         if (!request.body) {

@@ -11,12 +11,19 @@ class AnimalController{
           }
         try {
             const animal = await AnimalSchema.create(request.body);
-
-            response.status(201).json({ data: animal, error: false, msg: "Animal cadastrado com sucesso!", });
-        } catch (error) {
-            response.status(400).json({ data: error, error: true, msg: "Não foi possível cadastrar o animal.", });
-        }   
+      response.status(201).json({
+        data: animal,
+        error: false,
+        msg: "Animal cadastrado com sucesso!",
+      });
+    } catch (error) {
+      response.status(400).json({
+        data: error,
+        error: true,
+        msg: "Não foi possível cadastrar o animal.",
+      });
     }
+  }
 
     async alterarPorId(request: Request, response: Response) {
         if (!request.body) {
@@ -49,24 +56,14 @@ class AnimalController{
         error: true,
         msg: "Animal não encontrado!",
       });
-    } catch (error) {
+    } catch (err) {
       response.status(200).json({
-        data: error,
+        data: err,
         error: true,
         msg: "Animal não encontrado!",
       });
     }
   }
+}
 
-//teste
-async listar(request: Request, response: Response) {
-  try {
-      const animais = await AnimalSchema.find().populate("cliente");
-       response.status(200).json({ data: animais, error: false, msg: "Lista de animais atualizada!", });
-  } catch (error) {
-   response.status(400).json({ data: error, error: true, msg: "Não foi possível listar os animais.", });
-  }  
-}
-}
-//teste
-export { AnimalController};
+export { AnimalController };

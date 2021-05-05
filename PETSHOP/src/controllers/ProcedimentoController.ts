@@ -34,8 +34,7 @@ class ProcedimentoController{
               msg: "Está faltando o body da request!",
             });
           }
-          const { nome } = request.params;
-          const { valor } = request.body;
+          const { nome, valor } = request.body;
         try {            
             const procedimento = await ProcedimentoSchema.findOne({ nome: nome });
       if (procedimento != null) {

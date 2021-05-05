@@ -64,4 +64,4 @@ class FuncionarioController{
   }
 }
 
-export { FuncionarioController};
+export { FuncionarioController };

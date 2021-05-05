@@ -1,16 +1,24 @@
 import { Request, Response } from "express";
 import AtendimentoSchema from "../models/AtendimentoSchema";
 
-class AtendimentoController{
-    async cadastrar(request: Request, response: Response) {
-        try {
-            const atendimento = await AtendimentoSchema.create(request.body);
+class AtendimentoController {
+  async cadastrar(request: Request, response: Response) {
+    try {
+      const atendimento = await AtendimentoSchema.create(request.body);
 
-            response.status(201).json({ data: atendimento, error: false, msg: "Atendimento cadastrado com sucesso!", });
-        } catch (error) {
-            response.status(400).json({ data: error, error: true, msg: "Não foi possível cadastrar o atendimento.", });
-        }   
+      response.status(201).json({
+        data: atendimento,
+        error: false,
+        msg: "Atendimento cadastrado com sucesso!",
+      });
+    } catch (error) {
+      response.status(400).json({
+        data: error,
+        error: true,
+        msg: "Não foi possível cadastrar o atendimento.",
+      });
     }
+  }
 
     async listar(request: Request, response: Response) {
         try {

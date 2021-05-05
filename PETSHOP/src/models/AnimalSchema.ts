@@ -19,9 +19,9 @@ const AnimalSchema = new Schema(
             required: [true, "O campo cliente do ANIMAL é obrigatório!"],
         },
     },
-    {
-         timestamps: true,
-    }
+  {
+    timestamps: true,
+  }
 );
 
 export default model("animais", AnimalSchema);

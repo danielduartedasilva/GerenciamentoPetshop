@@ -1,5 +1,4 @@
-import { model,Schema} from 'mongoose';
-
+import { model, Schema } from "mongoose";
 
 const FuncionarioSchema = new Schema(
     {
@@ -31,16 +30,10 @@ const FuncionarioSchema = new Schema(
       uppercase: true,
       required: [true, "O campo FUNCAO no FUNCIONARIO é obrigatório!"],
         },
-    },
-    {
-        timestamps: true,
-    }
+  },
+  {
+    timestamps: true,
+  }
 );
 
 export default model("funcionarios", FuncionarioSchema);
-
-
-
-
-
-
