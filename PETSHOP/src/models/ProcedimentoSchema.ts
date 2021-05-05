@@ -16,5 +16,4 @@ const ProcedimentoSchema = new Schema(
   }
 );
 
-//export { ProcedimentoSchema}
 export default model("procedimentos", ProcedimentoSchema);
