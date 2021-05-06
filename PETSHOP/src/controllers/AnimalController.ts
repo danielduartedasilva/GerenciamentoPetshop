@@ -25,6 +25,25 @@ class AnimalController{
     }
   }
 
+  async listarPorId(request: Request, response: Response) {
+    try {
+      const { id } = request.params;
+      const animal = await AnimalSchema.find({ _id: id }).populate("cliente");
+      if (animal != null) {
+        response
+          .status(200)
+          .json({ data: animal, error: false, msg: "Animal encontrado!" });
+      }
+      response
+        .status(400)
+        .json({ data: animal, error: false, msg: "Animal não encontrado!" });
+      } catch (error) {
+        response
+          .status(400)
+          .json({ data: error, error: true, msg: "Formato de id não válido!" });
+      }
+    }
+
   async alterarPorId(request: Request, response: Response) {
     if (!request.body) {
       response.status(404).json({

@@ -30,11 +30,15 @@ Content-Type: application/json
     "endereco": "Rua desembargador Cid Campelo 7390"
 }
 ###Atualizar listas de animais do cliente
-PUT  http://localhost:3000/cliente/alterarAnimais/609197106ea7be3fa893f4f4
+###Listar por id ok
+GET http://localhost:3000/animal/listar/60935265c76c13200cb5990b
+
+###
+PUT  http://localhost:3000/cliente/alterarAnimais/6093444d84f9c43a58c3a490
 Content-Type: application/json
 
 {
-    "animal": "60919d2df1d0993eac71950c"    
+    "animal": "60935265c76c13200cb5990b"    
 }
 ###Atualizar listas de animais do cliente com outro animal
 PUT  http://localhost:3000/cliente/alterarAnimais/609197106ea7be3fa893f4f4
@@ -50,7 +54,7 @@ POST  http://localhost:3000/animal/cadastrar
 Content-Type: application/json
 
 {
-    "nome": "Fifi",
+    "nome": "Tangerina",
     "tipo": "gato",
     "cliente":{
         "_id": "6093444d84f9c43a58c3a490"
