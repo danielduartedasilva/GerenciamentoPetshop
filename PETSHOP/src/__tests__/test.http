@@ -1,22 +1,47 @@
 ###Teste Cliente
+### Requisição com sucesso cadastrar cliente ok
+POST http://localhost:3000/cliente/cadastrar
+Content-Type: application/json
+
+{
+    "nome": "Jhon Connor",
+    "cpf": "111.111.111.19",
+    "telefone": "(41) 11111-1119",
+    "endereco": "Rua Nivaldo Ramos, 1"
+}
 ###Listar somente ok
 GET http://localhost:3000/cliente/listar
 
 ###Listar somente por ID ok
-GET http://localhost:3000/cliente/listar/609177a4109d53407452a0c0
+GET http://localhost:3000/cliente/listar/6092e38609c2b9324038c1cf
 
 ###Apagar por ID ok
 DELETE  http://localhost:3000/cliente/excluir/60909f1b66c5d92a9cdd9262
 
-###Atualizar cliente ok
-PUT  http://localhost:3000/cliente/alterar/60913da892efd319a05238de
+
+### Atualizar CLIENTE por ID
+PUT  http://localhost:3000/cliente/alterar/609197106ea7be3fa893f4f4
 Content-Type: application/json
 
 {
-    "nome": "Sara Connor",
-    "cpf": "111.111.111.12",
-    "telefone": "(41) 11111-1111",
-    "endereco": "Rua Nivaldo Ramos, 1"
+    "nome": "Ronaldo Gomes",
+    "cpf": "09798455878",
+    "telefone": "(41) 98783-6468",
+    "endereco": "Rua desembargador Cid Campelo 7390"
+}
+###Atualizar listas de animais do cliente
+PUT  http://localhost:3000/cliente/alterarAnimais/609197106ea7be3fa893f4f4
+Content-Type: application/json
+
+{
+    "animal": "60919d2df1d0993eac71950c"    
+}
+###Atualizar listas de animais do cliente com outro animal
+PUT  http://localhost:3000/cliente/alterarAnimais/609197106ea7be3fa893f4f4
+Content-Type: application/json
+
+{
+    "animal": "60919df950c8363f3cf15af8"    
 }
 
 ### TESTES PARA ANIMAL ###
@@ -24,24 +49,12 @@ Content-Type: application/json
 POST  http://localhost:3000/animal/cadastrar
 Content-Type: application/json
 
-### Requisição com sucesso cadastrar cliente ok
-POST http://localhost:3000/cliente/cadastrar
-Content-Type: application/json
-
-{
-    "nome": "Sara Connor",
-    "cpf": "111.111.111.13",
-    "telefone": "(41) 11111-1111",
-    "endereco": "Rua Nivaldo Ramos, 1"
-}
-
-### Requisição com erro ok
-POST http://localhost:3000/cliente/cadastrar
-Content-Type: application/json
-
 {
     "nome": "Fifi",
     "tipo": "gato",
+    "cliente":{
+        "_id": "6093444d84f9c43a58c3a490"
+    }
 }
 
 ###atualizar o cliente com o novo animal
@@ -54,6 +67,23 @@ Content-Type: application/json
     "telefone": "(41) 91251-5816",
     "endereco": "Rua Nivaldo Ramos, 5",
     "animal":["60909e6566c5d92a9cdd9260"]
+    "nome": "Montanha",
+    "tipo": "cachorro",
+    "cliente": {
+        "_id": "609197106ea7be3fa893f4f4"
+    }
+}
+
+### Atualizar o ANIMAL com o cliente
+PUT  http://localhost:3000/animal/alterar/60919d2df1d0993eac71950c
+Content-Type: application/json
+
+{
+    "nome": "Sammy",
+    "tipo":"cachorro",
+    "cliente": {
+        "_id": "609197106ea7be3fa893f4f4"
+    }
 }
 
 ### Requisição com sucesso
@@ -69,7 +99,7 @@ Content-Type: application/json
 }
 
 ### Atualizar FUNCIONARIO
-PUT http://localhost:3000/funcionario/alterar/6090bbfe88c3ab06000486e3
+PUT http://localhost:3000/funcionario/alterar/6091bc6da1c3523f207d4145
 Content-Type: application/json
 
 {
@@ -124,6 +154,9 @@ Content-Type: application/json
 ###Testes para funcionários###################################
 ### Requisição com sucesso
 POST http://localhost:3000/funcionario/cadastrar
+### TESTES PARA ATENDIMENTO ###
+### Cadastrar ATENDIMENTO
+POST http://localhost:3000/atendimento/cadastrar
 Content-Type: application/json
 {
     "nome": "Sebastiana Maria da Silva",
@@ -148,9 +181,28 @@ PATCH http://localhost:3000/funcionario/alterar/608db8465a04b03ff01dc18f/1
 Content-Type: application/json
 {
     "nome": "Tosa",
-    "valor": 25.00
+    "cliente":{
+        "_id":"609197106ea7be3fa893f4f4"
+    },
+    "funcionario":{
+        "_id": "6091bc6da1c3523f207d4145"        
+    },
+    "animal":{
+        "_id": "60919d2df1d0993eac71950c"
+    },
+    "procedimento":{
+        "_id": "6091bf4d6bbde036a835a5e5"
+    },
+    "data_agendamento":"05-04-2021"
 }
+###Cadastrar procedimento
+POST http://localhost:3000/procedimento/cadastrar
+Content-Type: application/json
 
+{
+    "nome": "Tosa",
+    "valor": 20.00
+}
 ### Atualizar VALOR do PROCEDIMENTO
 PUT http://localhost:3000/procedimento/alterar
 Content-Type: application/json

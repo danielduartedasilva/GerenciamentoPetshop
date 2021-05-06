@@ -4,6 +4,7 @@ import AtendimentoSchema from "../models/AtendimentoSchema";
 class AtendimentoController {
   async cadastrar(request: Request, response: Response) {
     try {
+      
       const atendimento = await AtendimentoSchema.create(request.body);
 
       response.status(201).json({
