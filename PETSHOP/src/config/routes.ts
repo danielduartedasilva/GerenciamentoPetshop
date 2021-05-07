@@ -34,6 +34,7 @@ router.put("/animal/alterar/:id", animalController.alterarPorId);
 router.post("/atendimento/cadastrar", atendimentoController.cadastrar);
 router.get("/atendimento/listar", atendimentoController.listar);
 router.put("/atendimento/alterar/:id", atendimentoController.alterarPorId);
+router.get("/atendimento/listar/:id", atendimentoController.listarPorId);
 
 //rotas para procedimento
 router.post("/procedimento/cadastrar", procedimentoController.cadastrar);

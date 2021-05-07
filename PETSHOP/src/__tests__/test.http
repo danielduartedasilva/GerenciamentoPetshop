@@ -4,44 +4,44 @@ POST http://localhost:3000/cliente/cadastrar
 Content-Type: application/json
 
 {
-    "nome": "Gabriel Luiz Deina",
+    "nome": "Ronaldo Gomes",
     "cpf": "09798455878",
     "telefone": "(41) 98783-6468",
-    "endereco": "Rua Jabuticaba, 7"
+    "endereco": "Rua das flores, 117"
 }
 
 ### Listar todos os CLIENTES cadastrados
 GET http://localhost:3000/cliente/listar
 
 ### Listar CLIENTE somente por ID
-GET http://localhost:3000/cliente/listar/
+GET http://localhost:3000/cliente/listar/60959bf0b3e35721a03d3ac0
 
 ### Apagar CLIENTE por ID
 DELETE  http://localhost:3000/cliente/excluir/
 
 ### Atualizar CLIENTE por ID
-PUT  http://localhost:3000/cliente/alterar/609197106ea7be3fa893f4f4
+PUT  http://localhost:3000/cliente/alterar/6092e38609c2b9324038c1cf
 Content-Type: application/json
 
 {
-    "nome": "Ronaldo Gomes",
+    "nome": "José de alencar da silva",
     "cpf": "09798455878",
     "telefone": "(41) 98783-6468",
     "endereco": "Rua desembargador Cid Campelo 7390"
 }
 ###Atualizar listas de animais do cliente
-PUT  http://localhost:3000/cliente/alterarAnimais/609197106ea7be3fa893f4f4
+PUT  http://localhost:3000/cliente/alterarAnimais/60959bf0b3e35721a03d3ac0
 Content-Type: application/json
 
 {
-    "animal": "60919d2df1d0993eac71950c"    
+    "animal": "6094739c0804d33c746232a8"    
 }
 ###Atualizar listas de animais do cliente com outro animal
-PUT  http://localhost:3000/cliente/alterarAnimais/609197106ea7be3fa893f4f4
+PUT  http://localhost:3000/cliente/alterarAnimais/60943b288cbdaa33d4aa2090
 Content-Type: application/json
 
 {
-    "animal": "60919df950c8363f3cf15af8"    
+    "animal": "60943b758cbdaa33d4aa2091"    
 }
 
 ### TESTES PARA ANIMAL ###
@@ -50,10 +50,10 @@ POST  http://localhost:3000/animal/cadastrar
 Content-Type: application/json
 
 {
-    "nome": "Thor",
+    "nome": "Nome do animal",
     "tipo": "cachorro",
     "cliente": {
-        "_id": "609197106ea7be3fa893f4f4"
+        "_id": "60943b288cbdaa33d4aa2090"
     }
 }
 
@@ -62,22 +62,22 @@ POST  http://localhost:3000/animal/cadastrar/
 Content-Type: application/json
 
 {
-    "nome": "Montanha",
-    "tipo": "cachorro",
+    "nome": "Caue",
+    "tipo": "gato",
     "cliente": {
-        "_id": "609197106ea7be3fa893f4f4"
+        "_id": "6092e38609c2b9324038c1cf"
     }
 }
 
 ### Atualizar o ANIMAL com o cliente
-PUT  http://localhost:3000/animal/alterar/60919d2df1d0993eac71950c
+PUT  http://localhost:3000/animal/alterar/6092f28009c2b9324038c1d0
 Content-Type: application/json
 
 {
-    "nome": "Sammy",
+    "nome": "Geleia",
     "tipo":"cachorro",
     "cliente": {
-        "_id": "609197106ea7be3fa893f4f4"
+        "_id": "6092e38609c2b9324038c1cf"
     }
 }
 
@@ -112,21 +112,26 @@ POST http://localhost:3000/atendimento/cadastrar
 Content-Type: application/json
 
 {
-    "nome": "Tosa",
+    "nome": "Banho",
     "cliente":{
-        "_id":"609197106ea7be3fa893f4f4"
+        "_id":"60959bf0b3e35721a03d3ac0"
     },
     "funcionario":{
-        "_id": "6091bc6da1c3523f207d4145"        
+        "_id": "609471c20804d33c746232a6"        
     },
     "animal":{
-        "_id": "60919d2df1d0993eac71950c"
+        "_id": "6094739c0804d33c746232a8"
     },
     "procedimento":{
-        "_id": "6091bf4d6bbde036a835a5e5"
+        "_id": "60946d9fb8dd361614f16a58"
     },
-    "data_agendamento":"05-04-2021"
+    "data_agendamento":"05-07-2021"
 }
+### Listar ATENDIMENTO
+GET  http://localhost:3000/atendimento/listar
+### Listar ATENDIMENTO id
+GET  http://localhost:3000/atendimento/listar/6095a379f429b718b00504a4
+
 ###Cadastrar procedimento
 POST http://localhost:3000/procedimento/cadastrar
 Content-Type: application/json

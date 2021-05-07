@@ -28,7 +28,8 @@ class ClienteController {
 
   async listar(request: Request, response: Response) {
     try {
-      const clientes = await ClienteSchema.find();
+      const clientes = await ClienteSchema.find().
+                              populate("animal");
       response.status(200).json({
         data: clientes,
         error: false,
@@ -46,8 +47,9 @@ class ClienteController {
   async listarPorId(request: Request, response: Response) {
     try {
       const { id } = request.params;
-      const cliente = await ClienteSchema.find({ _id: id });
-
+      const cliente = await ClienteSchema.find({ _id: id }).
+                      populate("animal");
+      
       if (cliente != null) {
         response
           .status(200)

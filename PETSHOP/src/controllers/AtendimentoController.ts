@@ -1,4 +1,4 @@
-import { Request, Response } from "express";
+import { json, Request, Response } from "express";
 import AtendimentoSchema from "../models/AtendimentoSchema";
 
 class AtendimentoController {
@@ -23,7 +23,12 @@ class AtendimentoController {
 
   async listar(request: Request, response: Response) {
     try {
-      const atendimentos = await AtendimentoSchema.find();
+      const atendimentos = await AtendimentoSchema.find()
+                           .populate("cliente","nome")
+                           .populate("procedimento")
+                           .populate("funcionario","nome")
+                           .populate("animal","nome");   
+                              
       response.status(200).json({
         data: atendimentos,
         error: false,
@@ -74,6 +79,37 @@ class AtendimentoController {
       });
     }
   }
+  
+  async listarPorId(request: Request, response: Response) {
+    try {
+        const { id } = request.params;
+
+        const atendimentos = await AtendimentoSchema.find()
+                                   .populate("cliente","nome")
+                                   .populate("procedimento")
+                                   .populate("funcionario","nome")
+                                   .populate("animal","nome");
+        if(atendimentos != null){
+          response.status(200).json({
+            data: atendimentos,
+            error: false,
+            msg: "Lista de Atendimento atualizado com sucesso!",
+          });
+        }
+        response.status(200).json({
+          data: atendimentos,
+          error: false,
+          msg: "Não foi possível listar o Atendimento!",
+        });
+    } catch (err) {
+      response.status(400).json({
+        data: err,
+        error: true,
+        msg: "Não foi possível listar os atendimentos.",
+      });
+    }
+  }
+
 }
 
 export { AtendimentoController };
