@@ -1,0 +1,30 @@
+<mat-card>
+    <mat-card-title>Novo Funcionário</mat-card-title>
+    <mat-card-content>
+        <mat-form-field>
+            <mat-label for="nome" >Nome</mat-label>
+            <input matInput placeholder="Nome" type="text" name="nome" [(ngModel)]="nome">
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label for="cpf" >Cpf</mat-label>
+            <input matInput placeholder="Cpf" type="text" name="cpf" [(ngModel)]="cpf">
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label for="telefone" >Telefone</mat-label>
+            <input matInput placeholder="Telefone" type="text" name="telefone" [(ngModel)]="telefone">
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label for="endereco" >Endereço</mat-label>
+            <input matInput placeholder="Endereço" type="text" name="endereco" [(ngModel)]="endereco">
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label for="endereco" >Função</mat-label>
+            <input matInput placeholder="Função" type="text" name="funcao" [(ngModel)]="funcao">
+        </mat-form-field>
+        <div class="actions">
+            <button mat-raised-button color="primary" (click)="cadastrar()">Cadastrar</button>
+            <a mat-stroked-button routerLink="">Listar Funcionários</a>
+        </div>
+    </mat-card-content>
+</mat-card>
+

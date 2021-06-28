@@ -4,7 +4,6 @@ import AtendimentoSchema from "../models/AtendimentoSchema";
 class AtendimentoController {
   async cadastrar(request: Request, response: Response) {
     try {
-      
       const atendimento = await AtendimentoSchema.create(request.body);
 
       response.status(201).json({
@@ -21,9 +20,14 @@ class AtendimentoController {
     }
   }
 
-    async listar(request: Request, response: Response) {
-        try {
-            const atendimentos = await AtendimentoSchema.find();
+  async listar(request: Request, response: Response) {
+    try {
+      const atendimentos = await AtendimentoSchema.find()
+                              .populate("cliente","nome")
+                              .populate("procedimento")
+                              .populate("funcionario","nome")
+                              .populate("animal","nome"); 
+                                
       response.status(200).json({
         data: atendimentos,
         error: false,
@@ -56,7 +60,7 @@ class AtendimentoController {
           { $set: { data_agendamento: data_agendamento } }
         );
         response.status(200).json({
-            data: result,
+          data: result,
           error: false,
           msg: "Atendimento atualizado com sucesso!",
         });
@@ -76,4 +80,4 @@ class AtendimentoController {
   }
 }
 
-export { AtendimentoController};
+export { AtendimentoController };

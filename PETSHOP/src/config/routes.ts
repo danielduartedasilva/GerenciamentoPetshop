@@ -13,31 +13,25 @@ const animalController = new AnimalController();
 const atendimentoController = new AtendimentoController();
 const procedimentoController = new ProcedimentoController();
 
-//rotas para clientes
 router.get("/cliente/listar", clienteController.listar);
 router.get("/cliente/listar/:id", clienteController.listarPorId);
-//router.get("/cliente/listar/:cpf", clienteController.listarPorCpf);
 router.post("/cliente/cadastrar", clienteController.cadastrar);
 router.delete("/cliente/excluir/:id", clienteController.excluir);
 router.put("/cliente/alterar/:id", clienteController.alterar);
-router.put("/cliente/alterarAnimais/:id", clienteController.alterarListaAnimais);
 
-//rotas para funcionários
+router.get("/funcionario/listar", funcionarioController.listar)
 router.post("/funcionario/cadastrar", funcionarioController.cadastrar);
-router.put("/funcionario/alterar/:id", funcionarioController.alterar);
 
-//rotas para animal
+router.get("/animal/listar", animalController.listar);
 router.post("/animal/cadastrar", animalController.cadastrar);
-router.get("/animal/listar/:id", animalController.listarPorId);
 router.put("/animal/alterar/:id", animalController.alterarPorId);
 
-
-//rotas para atendimento
 router.post("/atendimento/cadastrar", atendimentoController.cadastrar);
+router.get("/atendimento/listar", atendimentoController.listar);
 router.put("/atendimento/alterar/:id", atendimentoController.alterarPorId);
 
-//rotas para procedimento
 router.post("/procedimento/cadastrar", procedimentoController.cadastrar);
-router.put("/procedimento/alterar", procedimentoController.alterar);
+router.put("/procedimento/alterar/", procedimentoController.alterar);
+router.get("/procedimento/listar", procedimentoController.listar);
 
 export { router };

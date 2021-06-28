@@ -1,0 +1,14 @@
+mat-card-content{
+    padding: 3%;
+}
+mat-form-field{
+    width: 50%;
+    display: block;
+}
+.actions{
+    margin-top: 16px;
+    width: 50px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
