@@ -17,6 +17,8 @@ import { CadastrarComponent } from './components/views/funcionario/cadastrar/cad
 import { HeaderComponent } from './components/template/header/header.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ContentComponent } from './components/template/content/content.component';
+import { ClienteComponent } from './components/views/cliente/cliente.component';
+import { AnimalComponent } from './components/views/animal/animal.component';
 
 
 
@@ -27,7 +29,9 @@ import { ContentComponent } from './components/template/content/content.componen
     ListarComponent,
     CadastrarComponent,
     HeaderComponent,
-    ContentComponent
+    ContentComponent,
+    ClienteComponent,
+    AnimalComponent
 
   ],
   imports: [
