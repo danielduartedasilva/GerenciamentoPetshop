@@ -4,6 +4,7 @@ export class Cliente{
     cpf!: string;
     telefone!: string;
     endereco!: string;
+    animal!: string;
     createdAt?: Date;
     updateAt?: Date;
-    }
+}
