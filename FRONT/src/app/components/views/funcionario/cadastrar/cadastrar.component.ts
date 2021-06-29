@@ -7,7 +7,7 @@ import { FuncionarioService } from 'src/app/services/funcionario.service';
   templateUrl: './cadastrar.component.html',
   styleUrls: ['./cadastrar.component.css']
 })
-export class CadastrarComponent implements OnInit {
+export class FuncionarioCadastrarComponent implements OnInit {
   nome!: string;
   cpf!: string;
   telefone!: string;

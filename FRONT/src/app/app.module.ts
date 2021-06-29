@@ -12,8 +12,8 @@ import { MatCardModule } from '@angular/material/card';
 import {MatTableModule} from '@angular/material/table';
 
 import { AppComponent } from './app.component';
-import { ListarComponent } from './components/views/funcionario/listar/listar.component';
-import { CadastrarComponent } from './components/views/funcionario/cadastrar/cadastrar.component';
+import { FuncionarioListarComponent } from './components/views/funcionario/listar/listar.component';
+import { FuncionarioCadastrarComponent } from './components/views/funcionario/cadastrar/cadastrar.component';
 import { HeaderComponent } from './components/template/header/header.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ContentComponent } from './components/template/content/content.component';
@@ -27,8 +27,8 @@ import { CadastrarAnimalComponent } from './components/views/animal/cadastrar/ca
 @NgModule({
   declarations: [
     AppComponent,
-    ListarComponent,
-    CadastrarComponent,
+    FuncionarioListarComponent,
+    FuncionarioCadastrarComponent,
     HeaderComponent,
     ContentComponent,
     CadastrarClienteComponent,

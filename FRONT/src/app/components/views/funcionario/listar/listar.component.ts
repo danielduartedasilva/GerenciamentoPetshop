@@ -7,7 +7,7 @@ import { FuncionarioService } from 'src/app/services/funcionario.service';
   templateUrl: './listar.component.html',
   styleUrls: ['./listar.component.css']
 })
-export class ListarComponent implements OnInit {
+export class FuncionarioListarComponent implements OnInit {
   funcionarios: Funcionario[] = [];
 
   constructor(private servive: FuncionarioService) {}
