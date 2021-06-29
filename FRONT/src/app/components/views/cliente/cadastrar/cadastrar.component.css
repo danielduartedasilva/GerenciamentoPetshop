@@ -11,6 +11,20 @@ mat-grid-tile {
     width: 100%;
 }
 
+.externo{
+    display: flex;
+    width: 100%;
+    flex-direction: row;
+}
+.interno{
+    flex: 1;
+    margin-right: 5px;
+}
+.conteudo-cliente{
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+}
 table {
     margin-top: 16px;
     width: 100%;
