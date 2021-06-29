@@ -1,22 +1,24 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { CadastrarComponent } from './components/views/funcionario/cadastrar/cadastrar.component';
-import { ListarComponent } from './components/views/funcionario/listar/listar.component';
+import { FuncionarioCadastrarComponent } from './components/views/funcionario/cadastrar/cadastrar.component';
+import { FuncionarioListarComponent } from './components/views/funcionario/listar/listar.component';
+//import { CadastrarComponent } from './components/views/funcionario/cadastrar/cadastrar.component';
+//import { ListarComponent } from './components/views/funcionario/listar/listar.component';
 
 
 const routes: Routes = [
   {
     path: '',
-    component: ListarComponent
+    component: FuncionarioListarComponent
   },
   {
     path: 'funcionario/cadastrar',
-    component: CadastrarComponent
-  },
-  {
-    path: 'procedimento/cadastrar',
-    component: CadastrarComponent
+    component: FuncionarioCadastrarComponent
   }
+  // {
+  //   path: 'procedimento/cadastrar',
+  //   component: CadastrarComponent
+  // }
 ];
 
 @NgModule({
