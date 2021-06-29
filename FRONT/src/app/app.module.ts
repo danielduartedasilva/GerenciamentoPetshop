@@ -10,6 +10,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import {MatIconModule} from '@angular/material/icon';
 import { MatCardModule } from '@angular/material/card';
 import {MatTableModule} from '@angular/material/table';
+import { MatInputModule } from '@angular/material/input';
 
 import { AppComponent } from './app.component';
 import { FuncionarioListarComponent } from './components/views/funcionario/listar/listar.component';
@@ -20,6 +21,7 @@ import { ContentComponent } from './components/template/content/content.componen
 import { ClienteListarComponent } from '../app/components/views/cliente/listar/listar.component';
 import { CadastrarClienteComponent } from '../app/components/views/cliente/cadastrar/cadastrar.component';
 import { CadastrarAnimalComponent } from './components/views/animal/cadastrar/cadastrar.component';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 
 
@@ -47,8 +49,10 @@ import { CadastrarAnimalComponent } from './components/views/animal/cadastrar/ca
     MatListModule,
     MatIconModule,
     MatFormFieldModule,
+    MatInputModule,
     MatCardModule,
-    MatTableModule
+    MatTableModule,
+    MatSnackBarModule
   ],
   providers: [],
   bootstrap: [AppComponent]

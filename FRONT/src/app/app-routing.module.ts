@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { CadastrarClienteComponent } from './components/views/cliente/cadastrar/cadastrar.component';
+import { ClienteListarComponent } from './components/views/cliente/listar/listar.component';
 import { FuncionarioCadastrarComponent } from './components/views/funcionario/cadastrar/cadastrar.component';
 import { FuncionarioListarComponent } from './components/views/funcionario/listar/listar.component';
 //import { CadastrarComponent } from './components/views/funcionario/cadastrar/cadastrar.component';
@@ -14,6 +16,14 @@ const routes: Routes = [
   {
     path: 'funcionario/cadastrar',
     component: FuncionarioCadastrarComponent
+  },
+  {
+    path: 'cliente/cadastrar',
+    component: CadastrarClienteComponent
+  },
+  {
+    path: 'cliente/listar',
+    component: ClienteListarComponent
   }
   // {
   //   path: 'procedimento/cadastrar',

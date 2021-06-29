@@ -1,1 +1,102 @@
-<p>cadastrar works!</p>
+<mat-card>
+    <mat-card-title> Novo Cliente </mat-card-title>
+    <mat-card-content>
+
+        <div class="debito-credito">
+            <div class="credito">
+                <mat-card>
+                    <mat-card-title> Adicionar Cliente </mat-card-title>
+                    <mat-card-content>
+                        <div class="conteudo-credito">
+                            <input matInput placeholder="ID" type="text" [hidden]="true" name="data"
+                                [(ngModel)]="idCliente" />
+                            <mat-form-field>
+                                <mat-label for="data">Nome do cliente</mat-label>
+                                <input matInput placeholder="Cliente" type="text" name="data"
+                                    [(ngModel)]="nomeCliente" />
+                            </mat-form-field>
+
+                            <mat-form-field>
+                                <mat-label for="data">CPF</mat-label>
+                                <input matInput placeholder="Cpf" type="text" name="data" [(ngModel)]="cpfCliente" />
+                            </mat-form-field>
+
+                            <mat-form-field>
+                                <mat-label for="data">Telefone</mat-label>
+                                <input matInput placeholder="Telefone" type="text" name="data"
+                                    [(ngModel)]="telefoneCliente" />
+                            </mat-form-field>
+
+                            <mat-form-field>
+                                <mat-label for="data">Endereco</mat-label>
+                                <input matInput placeholder="Endereco" type="text" name="data"
+                                    [(ngModel)]="enderecoCliente" />
+                            </mat-form-field>
+
+                            <mat-form-field>
+                                <mat-label for="data">Animal</mat-label>
+                                <input matInput placeholder="Animal" type="text" name="data"
+                                    [(ngModel)]="animalCliente" />
+                            </mat-form-field>
+
+                            <div *ngIf="!alterar;else atualizar">
+                                <button mat-button color="primary" (click)="adicionarCliente()">Adicionar
+                                    Cliente
+                                </button>
+                            </div>
+                            <ng-template #atualizar>
+                                <button mat-button color="primary" (click)="atualizarCliente()">Atualizar
+                                    Cliente</button>
+                            </ng-template>
+
+                        </div>
+                        <table mat-table [dataSource]="clientes" class="mat-elevation-z8">
+                            <ng-container matColumnDef="nome">
+                                <th mat-header-cell *matHeaderCellDef>Nome</th>
+                                <td mat-cell *matCellDef="let cliente">{{ cliente.nome }}</td>
+                            </ng-container>
+
+                            <ng-container matColumnDef="cpf">
+                                <th mat-header-cell *matHeaderCellDef>CPF</th>
+                                <td mat-cell *matCellDef="let cliente">{{ cliente.cpf }}</td>
+                            </ng-container>
+
+                            <ng-container matColumnDef="telefone">
+                                <th mat-header-cell *matHeaderCellDef>Telefone</th>
+                                <td mat-cell *matCellDef="let cliente">{{ cliente.telefone }}</td>
+                            </ng-container>
+
+                            <ng-container matColumnDef="endereco">
+                                <th mat-header-cell *matHeaderCellDef>Endereco</th>
+                                <td mat-cell *matCellDef="let cliente">{{ cliente.endereco }}</td>
+                            </ng-container>
+
+                            <ng-container matColumnDef="animal">
+                                <th mat-header-cell *matHeaderCellDef>Animal</th>
+                                <td mat-cell *matCellDef="let cliente">{{ cliente.animal }}</td>
+                            </ng-container>
+
+                            <ng-container matColumnDef="editar">
+                                <th mat-header-cell *matHeaderCellDef>Alterar</th>
+                                <td mat-cell *matCellDef="let cliente">
+                                    <button (click)="alterarCliente(cliente)" mat-stroked-button color="accent">
+                                        <span class="material-icons"> edit </span>
+                                    </button>
+                                </td>
+                            </ng-container>
+
+                            <tr mat-header-row *matHeaderRowDef="colunasCliente"></tr>
+                            <tr mat-row *matRowDef="let row; columns: colunasCliente"></tr>
+                        </table>
+                    </mat-card-content>
+                </mat-card>
+            </div>
+        </div>
+
+        <mat-card-actions>
+            <button mat-raised-button color="warn" (click)="cadastrar()" [disabled]="alterar">Cadastrar</button>
+            <a mat-stroked-button routerLink=""> Listar Clientes </a>
+        </mat-card-actions>
+
+    </mat-card-content>
+</mat-card>

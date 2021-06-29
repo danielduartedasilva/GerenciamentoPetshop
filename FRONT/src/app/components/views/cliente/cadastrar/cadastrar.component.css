@@ -1,0 +1,26 @@
+mat-card {
+    background-color: cornsilk;
+    width: max-content;
+}
+
+mat-card-content {
+    padding: 5px;
+}
+
+mat-grid-tile {
+    width: 100%;
+}
+
+table {
+    margin-top: 16px;
+    width: 100%;
+}
+
+.mat-button {
+    margin-left: 5px;
+    height: 40px;
+}
+
+.mat-button:hover {
+    text-decoration: underline;
+}
