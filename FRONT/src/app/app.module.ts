@@ -17,8 +17,9 @@ import { CadastrarComponent } from './components/views/funcionario/cadastrar/cad
 import { HeaderComponent } from './components/template/header/header.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ContentComponent } from './components/template/content/content.component';
-import { ClienteComponent } from './components/views/cliente/cliente.component';
-import { AnimalComponent } from './components/views/animal/animal.component';
+import { ClienteListarComponent } from '../app/components/views/cliente/listar/listar.component';
+import { CadastrarClienteComponent } from '../app/components/views/cliente/cadastrar/cadastrar.component';
+import { CadastrarAnimalComponent } from './components/views/animal/cadastrar/cadastrar.component';
 
 
 
@@ -30,8 +31,9 @@ import { AnimalComponent } from './components/views/animal/animal.component';
     CadastrarComponent,
     HeaderComponent,
     ContentComponent,
-    ClienteComponent,
-    AnimalComponent
+    CadastrarClienteComponent,
+    ClienteListarComponent,
+    CadastrarAnimalComponent,
 
   ],
   imports: [
