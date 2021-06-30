@@ -12,11 +12,12 @@ class ClienteController {
 
     try {
       const cliente = await ClienteSchema.create(request.body);
-      response.status(201).json({
-        data: cliente,
-        error: false,
-        msg: "Cliente cadastrado com sucesso!",
-      });
+      // response.status(201).json({
+      //   data: cliente,
+      //   error: false,
+      //   msg: "Cliente cadastrado com sucesso!",
+      // });
+      response.status(201).json(cliente);
     } catch (error) {
       response.status(400).json({
         data: error,
@@ -93,6 +94,7 @@ class ClienteController {
     }
     //const { id } = request.params;
     const { _id,nome, cpf, telefone, endereco,animal } = request.body;
+    console.log(animal );
 
     try {
       const cliente = await ClienteSchema.findOne({ _id: _id });
@@ -105,10 +107,13 @@ class ClienteController {
               cpf: cpf,
               telefone: telefone,
               endereco: endereco,
-              animal: animal,
+              $push:{
+                animal: animal,
+              }
             },
           }
         );
+        console.log(result);
         response.status(200).json({
           data: result,
           error: false,

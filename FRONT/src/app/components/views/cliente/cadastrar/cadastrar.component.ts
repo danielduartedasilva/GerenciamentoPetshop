@@ -13,103 +13,111 @@ import { AnimalService } from 'src/app/services/animal.service';
   styleUrls: ['./cadastrar.component.css']
 })
 export class CadastrarClienteComponent implements OnInit {
-  colunasAnimal = ["nomeAnimal", "tipoAnimal","editar"];
-  
-  alterar: boolean = false;
-  clienteTemp: Cliente = new Cliente();  
+  colunasAnimal = ["nomeAnimal", "tipoAnimal", "editar"];
 
+  alterar: boolean = false;
+
+  cliente = new Cliente();
   idCliente!: string;
   nomeCliente!: string;
   cpfCliente!: string;
   telefoneCliente!: string;
   enderecoCliente!: string;
   animalCliente!: string;
-  
-  
+
+
   idAnimal!: string;
   idUltimoAnimalInserido!: string;
   nomeAnimal!: string;
   tipoAnimal!: string;
-
+  animalTemp = new Animal();
   //clientes = new MatTableDataSource<Cliente>();
-  animais = new MatTableDataSource<Animal>();  
+  animais = new MatTableDataSource<Animal>();
 
   constructor(
-    private service:ClienteService,
-    private serviceAnimal:AnimalService,
+    private service: ClienteService,
+    private serviceAnimal: AnimalService,
     private router: Router,
     private snack: MatSnackBar
-  )
-  { }
+  ) { }
 
   ngOnInit(): void {
   }
 
   cadastrar(): void {
     this.alterar = false;
-    let cliente = new Cliente();
-    cliente.nome = this.nomeCliente;
-    cliente.cpf = this.cpfCliente;
-    cliente.telefone = this.telefoneCliente;
-    cliente.endereco = this.enderecoCliente;    
+    this.serviceAnimal.listar().subscribe(listaAnimais => {
+      listaAnimais.forEach(animal => {
+        if (animal.cliente === this.cliente._id) {
+          this.cliente.animal.push(animal._id);
+        }
+      });
+    });
+    try {
+      this.service.atualizaCliente(this.cliente).subscribe(cli => {
+        this.snack.open("Cliente cadastrado", "Cliente", {
+          duration: 3000,
+          horizontalPosition: "right",
+          verticalPosition: "top",
+        });
+      });  
+    } catch (error) {
+      console.log(error);
+    }
     
-    //cadastra o cliente novo
-    this.service.cadastrar(cliente).subscribe(cli => {
-      this.snack.open("Cliente cadastrado", "Cliente", {
+    //this.router.navigate([""]);
+  }
+  adicionarCliente() {
+    this.cliente.nome = this.nomeCliente;
+    this.cliente.cpf = this.cpfCliente;
+    this.cliente.telefone = this.telefoneCliente;
+    this.cliente.endereco = this.enderecoCliente;
+    try {
+      //cadastra o cliente novo
+      this.service.cadastrar(this.cliente).subscribe(cli => {
+        this.cliente._id = cli._id;
+        this.snack.open("Cliente pré cadastrado", "Cliente", {
+          duration: 4000,
+          horizontalPosition: "right",
+          verticalPosition: "top",
+        });
+      });
+    } catch (error) {
+      this.snack.open("oops! Não foi possível cadastrar", "Cliente", {
         duration: 3000,
         horizontalPosition: "right",
         verticalPosition: "top",
       });
-      cliente._id = cli._id;
-      //busca a lista de animais que podem existir
-      this.serviceAnimal.listar()
-      .subscribe(animal => {
-        animal.forEach(an =>{
-          //atualiza o ID do cliente dentro de Animal
-          an.cliente = cli._id;
-          //empilha a lista de animais dentro do cliente
-          cliente.animal.push(an);
-        });        
-      });
-     
-      //atualiza o cliente no banco de dados
-      this.service.atualizaCliente(cliente).subscribe(el =>{
+    }
+  }
+  atualizarCliente() {
 
-      });
-      //cliente.animal.push(animal);
-      this.router.navigate([""]);
-    });      
   }
-  
-  atualizarCliente(){
-    
-  }
-  alterarCliente(cliente:Cliente){
+  alterarCliente(cliente: Cliente) {
 
   }
 
-  adicionarAnimal(){  
-    let animal = new Animal();  
-    animal.nome = this.nomeAnimal;
-    animal.tipo = this.tipoAnimal;
-    //cria um ID fake de cliente que depois será atualizado
-    animal.cliente = "123456789";
+  adicionarAnimal() {
+    //let animal = new Animal();  
+    this.animalTemp.nome = this.nomeAnimal;
+    this.animalTemp.tipo = this.tipoAnimal;
+    this.animalTemp.cliente = this.cliente._id;
     //adiciona na tabela de animais
-    this.animais.data.push(animal);
+    this.animais.data.push(this.animalTemp);
     this.animais._updateChangeSubscription();
     //adiciona no banco de dados o animal
-    // this.serviceAnimal.cadastrar(animal).subscribe(animal =>{
-    //   this.idUltimoAnimalInserido = animal._id;
-    //   this.snack.open("Animal cadastrado", "Animal", {
-    //     duration: 4000,
-    //     horizontalPosition: "right",
-    //     verticalPosition: "top",
-    //   });
-    // });
+    this.serviceAnimal.cadastrar(this.animalTemp).subscribe(animal => {
+      this.animalTemp._id = animal._id;
+      this.snack.open("Animal cadastrado", "Animal", {
+        duration: 4000,
+        horizontalPosition: "right",
+        verticalPosition: "top",
+      });
+    });
     //limpa os campos
-    this.nomeAnimal = ""; 
+    //this.nomeAnimal = ""; 
   }
-  atualizarAnimal(){
+  atualizarAnimal() {
 
   }
 }

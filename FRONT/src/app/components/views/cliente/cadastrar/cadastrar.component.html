@@ -31,8 +31,18 @@
                                 <mat-label for="data">Endereco</mat-label>
                                 <input matInput placeholder="Endereco" type="text" name="data"
                                     [(ngModel)]="enderecoCliente" />
-                            </mat-form-field>   
+                            </mat-form-field>  
 
+                            <div *ngIf="!alterar;else atualizar">
+                                <button mat-button color="primary" (click)="adicionarCliente()">
+                                    Adicionar cliente
+                                </button>
+                            </div>
+                            <ng-template #atualizar>
+                                <button mat-button color="primary" (click)="adicionarCliente()">
+                                    Atualizar cliente
+                                </button>
+                            </ng-template>
                         </div>
 
                                                
@@ -62,8 +72,8 @@
                                 <select matNativeControl [(ngModel)]="tipoAnimal">
                                   <option value="CACHORRO">CACHORRO</option>
                                   <option value="GATO">GATO</option>
-                                  <option value="AGENDADO">CAVALO</option>
-                                  <option value="AGENDADO">PASSARO</option>
+                                  <option value="CAVALO">CAVALO</option>
+                                  <option value="PASSARO">PASSARO</option>
                                 </select>
                               </mat-form-field>
 

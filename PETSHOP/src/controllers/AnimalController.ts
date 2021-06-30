@@ -12,11 +12,12 @@ class AnimalController {
 
     try {
       const animal = await AnimalSchema.create(request.body);
-      response.status(201).json({
+      /*response.status(201).json({
         data: animal,
         error: false,
         msg: "Animal cadastrado com sucesso!",
-      });
+      });*/
+      response.status(201).json(animal);
     } catch (error) {
       response.status(400).json({
         data: error,
@@ -29,11 +30,12 @@ class AnimalController {
   async listar(request: Request, response: Response) {
     try {
       const animais = await AnimalSchema.find();
-      response.status(200).json({
-        data: animais,
-        error: false,
-        msg: "Lista de animais atualizada!",
-      });
+      // response.status(200).json({
+      //   data: animais,
+      //   error: false,
+      //   msg: "Lista de animais atualizada!",
+      // });
+      response.status(200).json(animais);
     } catch (error) {
       response.status(400).json({
         data: error,
