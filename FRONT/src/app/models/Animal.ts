@@ -1,8 +1,8 @@
 export class Animal{
-    _id?: string;
+    _id!: string;
     nome!: string;
     tipo!: string;
-    cliente!: string;
+    cliente?: string;
     createdAt?: Date;
     updateAt?: Date;
 }

@@ -12,4 +12,5 @@ export class CadastrarAnimalComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  
 }

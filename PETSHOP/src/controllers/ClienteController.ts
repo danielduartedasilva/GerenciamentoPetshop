@@ -91,20 +91,21 @@ class ClienteController {
         msg: "Está faltando o body da request!",
       });
     }
-    const { id } = request.params;
-    const { nome, cpf, telefone, endereco } = request.body;
+    //const { id } = request.params;
+    const { _id,nome, cpf, telefone, endereco,animal } = request.body;
 
     try {
-      const cliente = await ClienteSchema.findOne({ _id: id });
+      const cliente = await ClienteSchema.findOne({ _id: _id });
       if (cliente != null) {
         const result = await ClienteSchema.updateOne(
-          { _id: id },
+          { _id: _id },
           {
             $set: {
               nome: nome,
               cpf: cpf,
               telefone: telefone,
               endereco: endereco,
+              animal: animal,
             },
           }
         );

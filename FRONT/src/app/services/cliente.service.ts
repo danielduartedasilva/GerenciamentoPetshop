@@ -17,4 +17,8 @@ export class ClienteService {
   cadastrar(cliente: Cliente): Observable<Cliente>{
     return this.http.post<Cliente>(`${this.baseUrl}cliente/cadastrar`, cliente);
   }
+  
+  atualizaCliente(cliente: Cliente): Observable<Cliente>{
+    return this.http.put<Cliente>(`${this.baseUrl}cliente/alterar`,cliente);
+  }
 }

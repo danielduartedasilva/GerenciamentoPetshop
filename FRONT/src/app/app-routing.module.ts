@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { CadastrarAnimalComponent } from './components/views/animal/cadastrar/cadastrar.component';
 import { CadastrarClienteComponent } from './components/views/cliente/cadastrar/cadastrar.component';
 import { ClienteListarComponent } from './components/views/cliente/listar/listar.component';
 import { FuncionarioCadastrarComponent } from './components/views/funcionario/cadastrar/cadastrar.component';
@@ -22,8 +23,16 @@ const routes: Routes = [
     component: CadastrarClienteComponent
   },
   {
+    path: 'cliente/alterar/:id',
+    component: CadastrarClienteComponent
+  },
+  {
     path: 'cliente/listar',
     component: ClienteListarComponent
+  },
+  {
+    path: 'animal/cadastrar',
+    component: CadastrarAnimalComponent
   }
   // {
   //   path: 'procedimento/cadastrar',

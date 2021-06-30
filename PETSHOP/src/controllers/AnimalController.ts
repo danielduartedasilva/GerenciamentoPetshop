@@ -42,7 +42,19 @@ class AnimalController {
       });
     }
   }
-
+  async listarPorId(request: Request, response: Response) {
+    const { id } = request.params;
+    try {
+      const animal = await AnimalSchema.findOne({ _id: id });
+      if (animal != null) {
+        response.status(200).json(animal);
+      } else {
+        response.status(404).json({ data: animal, error: false, msg: "Animal não encontrado!" });
+      }
+    } catch (error) {
+      response.status(400).json({ data: error, error: true, msg: "Esse não é um formato válido para o ID!" });
+    }
+  }
   async alterarPorId(request: Request, response: Response) {
     if (!request.body) {
       response.status(404).json({

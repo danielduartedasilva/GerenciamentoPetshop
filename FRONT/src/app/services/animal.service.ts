@@ -10,13 +10,17 @@ export class AnimalService {
   private baseUrl = "http://localhost:3000/";
   constructor(private http: HttpClient) { }
 
-  listar(): Observable<Animal[]>{
+  listar(): Observable<Animal[]> {
     return this.http.get<Animal[]>(`${this.baseUrl}animal/listar`); // ----------------------------equivalente a let url = "http://localhost:3000/" + "animal/listar/";
-   }
-   
-   cadastrar(animal: Animal): Observable<Animal>{
-     return this.http.post<Animal>(`${this.baseUrl}animal/cadastrar`, animal);
-   } 
+  }
+
+  cadastrar(animal: Animal): Observable<Animal> {
+    return this.http.post<Animal>(`${this.baseUrl}animal/cadastrar`, animal);
+  }  
+
+  listarPorId(id: string): Observable<Animal> {
+    return this.http.get<Animal>(`${this.baseUrl}animal/listar/:id`); // ----------------------------equivalente a let url = "http://localhost:3000/" + "animal/listar/";
+  }
 }
 
 

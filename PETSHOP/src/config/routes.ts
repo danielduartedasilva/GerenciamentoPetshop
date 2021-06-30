@@ -17,12 +17,13 @@ router.get("/cliente/listar", clienteController.listar);
 router.get("/cliente/listar/:id", clienteController.listarPorId);
 router.post("/cliente/cadastrar", clienteController.cadastrar);
 router.delete("/cliente/excluir/:id", clienteController.excluir);
-router.put("/cliente/alterar/:id", clienteController.alterar);
+router.put("/cliente/alterar", clienteController.alterar);
 
 router.get("/funcionario/listar", funcionarioController.listar)
 router.post("/funcionario/cadastrar", funcionarioController.cadastrar);
 
 router.get("/animal/listar", animalController.listar);
+router.get("/animal/listar/:id", animalController.listarPorId);
 router.post("/animal/cadastrar", animalController.cadastrar);
 router.put("/animal/alterar/:id", animalController.alterarPorId);
 
