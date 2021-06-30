@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 import ClienteSchema from "../models/ClienteSchema";
 
+import AnimalSchema from "../models/AnimalSchema";
 class ClienteController {
   async cadastrar(request: Request, response: Response) {
     if (!request.body) {
@@ -92,8 +93,13 @@ class ClienteController {
         msg: "Está faltando o body da request!",
       });
     }
-    //const { id } = request.params;
-    const { _id,nome, cpf, telefone, endereco,animal } = request.body;
+    const { id } = request.params;
+    console.log(id);
+    const { _id,nome, cpf, telefone, endereco } = request.body;
+    const animais = await AnimalSchema.find();
+    animais.forEach(animal =>{
+      if(animal)
+    });
     console.log(request.body);
 
     try {

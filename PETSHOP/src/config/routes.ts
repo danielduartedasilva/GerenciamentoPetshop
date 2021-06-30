@@ -17,7 +17,7 @@ router.get("/cliente/listar", clienteController.listar);
 router.get("/cliente/listar/:id", clienteController.listarPorId);
 router.post("/cliente/cadastrar", clienteController.cadastrar);
 router.delete("/cliente/excluir/:id", clienteController.excluir);
-router.put("/cliente/alterar", clienteController.alterar);
+router.put("/cliente/alterar/:id", clienteController.alterar);
 
 router.get("/funcionario/listar", funcionarioController.listar)
 router.post("/funcionario/cadastrar", funcionarioController.cadastrar);
