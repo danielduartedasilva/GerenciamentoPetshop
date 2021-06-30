@@ -1,1 +1,18 @@
-<p>cadastrar works!</p>
+<mat-card>
+    <mat-card-title>Novo Procedimento</mat-card-title>
+    <mat-card-content>
+        <mat-form-field>
+            <mat-label for="nome" >Nome</mat-label>
+            <input matInput placeholder="Nome" type="text" name="nome" [(ngModel)]="nome">
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label for="valor" >Valor</mat-label>
+            <input matInput placeholder="Valor" type="number" name="valor" [(ngModel)]="valor">
+        </mat-form-field>
+        
+        <div class="actions">
+            <button mat-raised-button color="primary" (click)="cadastrar()">Cadastrar</button>
+            <a mat-stroked-button routerLink="">Listar Procedimentos</a>
+        </div>
+    </mat-card-content>
+</mat-card>

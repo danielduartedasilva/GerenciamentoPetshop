@@ -22,6 +22,8 @@ import { ContentComponent } from './components/template/content/content.componen
 import { ClienteListarComponent } from '../app/components/views/cliente/listar/listar.component';
 import { CadastrarClienteComponent } from '../app/components/views/cliente/cadastrar/cadastrar.component';
 import { CadastrarAnimalComponent } from './components/views/animal/cadastrar/cadastrar.component';
+//import { ProcedimentoListarComponent } from './components/views/procedimento/listar/listar.component';
+//import { ProcedimentoCadastrarComponent } from './components/views/procedimento/cadastrar/cadastrar.component';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 
@@ -36,7 +38,9 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     ContentComponent,
     CadastrarClienteComponent,
     ClienteListarComponent,
-    CadastrarAnimalComponent,
+    CadastrarAnimalComponent
+    //ProcedimentoListarComponent,
+    //ProcedimentoCadastrarComponent
 
   ],
   imports: [

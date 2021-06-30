@@ -5,8 +5,8 @@ import { CadastrarClienteComponent } from './components/views/cliente/cadastrar/
 import { ClienteListarComponent } from './components/views/cliente/listar/listar.component';
 import { FuncionarioCadastrarComponent } from './components/views/funcionario/cadastrar/cadastrar.component';
 import { FuncionarioListarComponent } from './components/views/funcionario/listar/listar.component';
-//import { CadastrarComponent } from './components/views/funcionario/cadastrar/cadastrar.component';
-//import { ListarComponent } from './components/views/funcionario/listar/listar.component';
+//import { ProcedimentoCadastrarComponent } from './components/views/procedimento/cadastrar/cadastrar.component';
+//import { ProcedimentoListarComponent } from './components/views/procedimento/listar/listar.component';
 
 
 const routes: Routes = [
@@ -33,11 +33,16 @@ const routes: Routes = [
   {
     path: 'animal/cadastrar',
     component: CadastrarAnimalComponent
-  }
+  },
+  // {
+  //   path: 'procedimento/listar',
+  //   component: ProcedimentoListarComponent
+  // },
   // {
   //   path: 'procedimento/cadastrar',
-  //   component: CadastrarComponent
+  //   component: ProcedimentoCadastrarComponent
   // }
+  
 ];
 
 @NgModule({

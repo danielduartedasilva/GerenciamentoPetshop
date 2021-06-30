@@ -1,1 +1,18 @@
-<p>listar works!</p>
+<a mat-raised-button color="primary" routerLink="/procedimento/cadastrar">
+    <mat-icon>shower</mat-icon>Novo Procedimento </a>
+<table>
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Nome</th>
+            <th>Valor</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let procedimento of procedimentos">
+            <td>{{ procedimento._id }}</td>
+            <td>{{ procedimento.nome }}</td>
+            <td>{{ procedimento.valor }}</td>
+        </tr>
+    </tbody>
+</table>

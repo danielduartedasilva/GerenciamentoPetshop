@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Procedimento } from 'src/app/models/Procedimento';
+import { ProcedimentoService } from 'src/app/services/procedimento.service';
 
 @Component({
   selector: 'app-listar',
@@ -6,10 +8,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./listar.component.css']
 })
 export class ListarComponent implements OnInit {
-
-  constructor() { }
+  procedimentos: Procedimento[] = [];
+  constructor(private servive: ProcedimentoService) { }
 
   ngOnInit(): void {
+        this.servive.listar().subscribe((procedimentos) => {
+        this.procedimentos = procedimentos;
+      });
   }
 
 }
