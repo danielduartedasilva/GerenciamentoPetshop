@@ -46,13 +46,14 @@ export class CadastrarClienteComponent implements OnInit {
 
   cadastrar(): void {
     this.alterar = false;
-    this.serviceAnimal.listar().subscribe(listaAnimais => {
-      listaAnimais.forEach(animal => {
-        if (animal.cliente === this.cliente._id) {
-          this.cliente.animal.push(animal._id);
-        }
-      });
-    });
+    // this.serviceAnimal.listar().subscribe(listaAnimais => {
+    //   listaAnimais.forEach(animal => {
+    //     if (animal.cliente === this.cliente._id) {
+    //       this.cliente.animal.push(animal);
+    //     }
+    //   });
+    // });
+    
     try {
       this.service.atualizaCliente(this.cliente).subscribe(cli => {
         this.snack.open("Cliente cadastrado", "Cliente", {

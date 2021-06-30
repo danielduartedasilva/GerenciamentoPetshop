@@ -94,7 +94,7 @@ class ClienteController {
     }
     //const { id } = request.params;
     const { _id,nome, cpf, telefone, endereco,animal } = request.body;
-    console.log(animal );
+    console.log(request.body);
 
     try {
       const cliente = await ClienteSchema.findOne({ _id: _id });
@@ -107,9 +107,7 @@ class ClienteController {
               cpf: cpf,
               telefone: telefone,
               endereco: endereco,
-              $push:{
-                animal: animal,
-              }
+              animal: animal,             
             },
           }
         );
