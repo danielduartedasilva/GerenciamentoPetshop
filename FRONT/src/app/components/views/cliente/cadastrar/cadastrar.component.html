@@ -1,122 +1,112 @@
 <mat-card>
-    <mat-card-title> Novo Cliente </mat-card-title>
-    <mat-card-content>
+  <mat-card-title> Novo Cliente </mat-card-title>
+  <mat-card-content>
+    <div class="externo">
+      <div class="interno">
+        <mat-card>
+          <mat-card-title> Adicionar Cliente </mat-card-title>
+          <mat-card-content>
+            <div class="conteudo-cliente">
+              <mat-form-field>
+                <mat-label for="data">Nome do cliente</mat-label>
+                <input
+                  matInput
+                  placeholder="Cliente"
+                  type="text"
+                  name="data"
+                  [(ngModel)]="nomeCliente"
+                />
+              </mat-form-field>
 
-        <div class="externo">
-            <div class="interno">
-                <mat-card>
-                    <mat-card-title> Adicionar Cliente </mat-card-title>
-                    <mat-card-content>
-                        <div class="conteudo-cliente">
-                            <input matInput placeholder="ID" type="text" [hidden]="true" name="data"
-                                [(ngModel)]="idCliente" />
-                            <mat-form-field>
-                                <mat-label for="data">Nome do cliente</mat-label>
-                                <input matInput placeholder="Cliente" type="text" name="data"
-                                    [(ngModel)]="nomeCliente" />
-                            </mat-form-field>
+              <mat-form-field>
+                <mat-label for="data">CPF</mat-label>
+                <input
+                  matInput
+                  placeholder="Cpf"
+                  type="text"
+                  name="data"
+                  [(ngModel)]="cpfCliente"
+                />
+              </mat-form-field>
 
-                            <mat-form-field>
-                                <mat-label for="data">CPF</mat-label>
-                                <input matInput placeholder="Cpf" type="text" name="data" [(ngModel)]="cpfCliente" />
-                            </mat-form-field>
+              <mat-form-field>
+                <mat-label for="data">Telefone</mat-label>
+                <input
+                  matInput
+                  placeholder="Telefone"
+                  type="text"
+                  name="data"
+                  [(ngModel)]="telefoneCliente"
+                />
+              </mat-form-field>
 
-                            <mat-form-field>
-                                <mat-label for="data">Telefone</mat-label>
-                                <input matInput placeholder="Telefone" type="text" name="data"
-                                    [(ngModel)]="telefoneCliente" />
-                            </mat-form-field>
-
-                            <mat-form-field>
-                                <mat-label for="data">Endereco</mat-label>
-                                <input matInput placeholder="Endereco" type="text" name="data"
-                                    [(ngModel)]="enderecoCliente" />
-                            </mat-form-field>  
-
-                            <div *ngIf="!alterar;else atualizar">
-                                <button mat-button color="primary" (click)="adicionarCliente()">
-                                    Adicionar cliente
-                                </button>
-                            </div>
-                            <ng-template #atualizar>
-                                <button mat-button color="primary" (click)="adicionarCliente()">
-                                    Atualizar cliente
-                                </button>
-                            </ng-template>
-                        </div>
-
-                                               
-                    </mat-card-content>                    
-                </mat-card>               
+              <mat-form-field>
+                <mat-label for="data">Endereco</mat-label>
+                <input
+                  matInput
+                  placeholder="Endereco"
+                  type="text"
+                  name="data"
+                  [(ngModel)]="enderecoCliente"
+                />
+              </mat-form-field>
             </div>
-        </div>
-        
+          </mat-card-content>
+        </mat-card>
+      </div>
+    </div>
 
-        <div class="externo">
-            <div class="interno">
-                <mat-card>
-                    <mat-card-title> Adicionar animal </mat-card-title>
-                    <mat-card-content>
+    <div class="externo">
+      <div class="interno">
+        <mat-card>
+          <mat-card-title> Adicionar animal </mat-card-title>
+          <mat-card-content>
+            <div class="conteudo-cliente">
+              <mat-form-field>
+                <mat-label for="data">Nome do animal</mat-label>
+                <input
+                  matInput
+                  placeholder="Animal"
+                  type="text"
+                  name="data"
+                  [(ngModel)]="nomeAnimal"
+                />
+              </mat-form-field>
 
-                        <div class="conteudo-cliente">
-                            <input matInput placeholder="ID" type="text" [hidden]="true" name="data"
-                                [(ngModel)]="idAnimal" />
-                            <mat-form-field>
-                                <mat-label for="data">Nome do animal</mat-label>
-                                <input matInput placeholder="Animal" type="text" name="data"
-                                    [(ngModel)]="nomeAnimal" />
-                            </mat-form-field>
-
-                            <mat-form-field>
-                                <mat-label>Tipo do animal</mat-label>
-                                <select matNativeControl [(ngModel)]="tipoAnimal">
-                                  <option value="CACHORRO">CACHORRO</option>
-                                  <option value="GATO">GATO</option>
-                                  <option value="CAVALO">CAVALO</option>
-                                  <option value="PASSARO">PASSARO</option>
-                                </select>
-                              </mat-form-field>
-
-                            
-                            <div *ngIf="!alterar;else atualizar">
-                                <button mat-button color="primary" (click)="adicionarAnimal()">Adicionar
-                                    Animal
-                                </button>
-                            </div>
-                            <ng-template #atualizar>
-                                <button mat-button color="primary" (click)="atualizarAnimal()">Atualizar
-                                    Animal</button>
-                            </ng-template>
-
-                        </div> 
-                        <table mat-table [dataSource]="animais" class="mat-elevation-z8">
-                            <ng-container matColumnDef="nomeAnimal">
-                                <th mat-header-cell *matHeaderCellDef>Nome do animal</th>
-                                <td mat-cell *matCellDef="let animal">{{ animal.nome }}</td>
-                            </ng-container>
-                            <ng-container matColumnDef="tipoAnimal">
-                                <th mat-header-cell *matHeaderCellDef>Tipo do animal</th>
-                                <td mat-cell *matCellDef="let animal">{{ animal.tipo }}</td>
-                            </ng-container>
-                            <ng-container matColumnDef="editar">
-                                <th mat-header-cell *matHeaderCellDef>Alterar</th>
-                                <td mat-cell *matCellDef="let animal">
-                                    <button (click)="alterarCliente(animal)" mat-stroked-button color="accent">
-                                        <span class="material-icons"> edit </span>
-                                    </button>
-                                </td>
-                            </ng-container>
-                            <tr mat-header-row *matHeaderRowDef="colunasAnimal"></tr>
-                            <tr mat-row *matRowDef="let row; columns: colunasAnimal"></tr>
-                        </table>                     
-                    </mat-card-content>                    
-                </mat-card>               
+              <mat-form-field>
+                <mat-label>Tipo do animal</mat-label>
+                <select matNativeControl [(ngModel)]="tipoAnimal">
+                  <option value="CACHORRO">CACHORRO</option>
+                  <option value="GATO">GATO</option>
+                  <option value="CAVALO">CAVALO</option>
+                  <option value="PASSARO">PASSARO</option>
+                </select>
+              </mat-form-field>
+              <button mat-button color="primary" (click)="adicionarAnimal()">
+                Adicionar TESTE
+              </button>
             </div>
-        </div>
-        <mat-card-actions>
-            <button mat-raised-button color="warn" (click)="cadastrar()" [disabled]="alterar">Cadastrar</button>
-            <a mat-stroked-button routerLink="/cliente/listar"> Listar Clientes </a>
-        </mat-card-actions>
-
-    </mat-card-content>
+            <table mat-table [dataSource]="animais" class="mat-elevation-z8">
+              <ng-container matColumnDef="nomeAnimal">
+                <th mat-header-cell *matHeaderCellDef>Nome</th>
+                <td mat-cell *matCellDef="let animal">{{ animal.nome }}</td>
+              </ng-container>
+              <ng-container matColumnDef="tipoAnimal">
+                <th mat-header-cell *matHeaderCellDef>Tipo</th>
+                <td mat-cell *matCellDef="let animal">{{ animal.tipo }}</td>
+              </ng-container>
+              <tr mat-header-row *matHeaderRowDef="colunasAnimal"></tr>
+              <tr mat-row *matRowDef="let row; columns: colunasAnimal"></tr>
+            </table>
+          </mat-card-content>
+        </mat-card>
+      </div>
+    </div>
+    <mat-card-actions>
+      <button mat-raised-button color="warn" (click)="cadastrar()">
+        Cadastrar
+      </button>
+      <a mat-stroked-button routerLink="/cliente/listar"> Listar Clientes </a>
+    </mat-card-actions>
+  </mat-card-content>
 </mat-card>

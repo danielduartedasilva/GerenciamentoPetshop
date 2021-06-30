@@ -1,40 +1,40 @@
 mat-card {
-    background-color: cornsilk;
-    width: max-content;
+  background-color: cornsilk;
+  width: max-content;
 }
 
 mat-card-content {
-    padding: 5px;
+  padding: 5px;
 }
 
 mat-grid-tile {
-    width: 100%;
+  width: 100%;
 }
 
-.externo{
-    display: flex;
-    width: 100%;
-    flex-direction: row;
+.externo {
+  display: flex;
+  width: 100%;
+  flex-direction: row;
 }
-.interno{
-    flex: 1;
-    margin-right: 5px;
+.interno {
+  flex: 1;
+  margin-right: 5px;
 }
-.conteudo-cliente{
-    display: flex;
-    justify-content: space-between;
-    flex-direction: row;
+.conteudo-cliente {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
 }
 table {
-    margin-top: 16px;
-    width: 100%;
+  margin-top: 16px;
+  width: 100%;
 }
 
 .mat-button {
-    margin-left: 5px;
-    height: 40px;
+  margin-left: 5px;
+  height: 40px;
 }
 
 .mat-button:hover {
-    text-decoration: underline;
+  text-decoration: underline;
 }
