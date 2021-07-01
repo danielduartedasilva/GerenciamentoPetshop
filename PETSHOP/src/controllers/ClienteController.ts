@@ -32,11 +32,12 @@ class ClienteController {
     try {
       const clientes = await ClienteSchema.find()
                               .populate("animal","nome");
-      response.status(200).json({
-        data: clientes,
-        error: false,
-        msg: "Lista de clientes atualizada!",
-      });
+      // response.status(200).json({
+      //   data: clientes,
+      //   error: false,
+      //   msg: "Lista de clientes atualizada!",
+      // });
+      response.status(200).json(clientes);
     } catch (error) {
       response.status(400).json({
         data: error,
@@ -49,13 +50,16 @@ class ClienteController {
   async listarPorId(request: Request, response: Response) {
     try {
       const { id } = request.params;
-      const cliente = await ClienteSchema.find({ _id: id }).
-                            populate("animal","nome");
-
+      // const cliente = await ClienteSchema.find({ _id: id }).
+      //                       populate("animal","nome");
+      const cliente = await ClienteSchema.findById({ _id: id });
       if (cliente != null) {
+        // response
+        //   .status(200)
+        //   .json({ data: cliente, error: false, msg: "Cliente encontrado!" });
         response
           .status(200)
-          .json({ data: cliente, error: false, msg: "Cliente encontrado!" });
+          .json(cliente);
       }
       response
         .status(400)
@@ -93,15 +97,8 @@ class ClienteController {
         msg: "Está faltando o body da request!",
       });
     }
-    const { id } = request.params;
-    console.log(id);
     const { _id,nome, cpf, telefone, endereco } = request.body;
-    const animais = await AnimalSchema.find();
-    animais.forEach(animal =>{
-      if(animal)
-    });
-    console.log(request.body);
-
+    
     try {
       const cliente = await ClienteSchema.findOne({ _id: _id });
       if (cliente != null) {
@@ -112,12 +109,10 @@ class ClienteController {
               nome: nome,
               cpf: cpf,
               telefone: telefone,
-              endereco: endereco,
-              animal: animal,             
+              endereco: endereco,         
             },
           }
         );
-        console.log(result);
         response.status(200).json({
           data: result,
           error: false,
@@ -135,6 +130,24 @@ class ClienteController {
         error: true,
         msg: "Cliente não encontrado!",
       });
+    }
+  }
+
+  async apagarTudo(request: Request, response: Response) {
+    try {
+      const cliente = await ClienteSchema.deleteMany();
+      if (cliente != null) {
+        response
+          .status(200)
+          .json("Clientes excluídos");
+      }
+      response
+        .status(400)
+        .json({ data: cliente, error: false, msg: "Clientes não encontrado!" });
+    } catch (error) {
+      response
+        .status(400)
+        .json({ data: error, error: true, msg: "Formato de id não válido!" });
     }
   }
 }

@@ -31,6 +31,10 @@ const routes: Routes = [
     component: ClienteListarComponent
   },
   {
+    path: 'cliente/listar/:id',
+    component: ClienteListarComponent
+  },
+  {
     path: 'animal/cadastrar',
     component: CadastrarAnimalComponent
   },

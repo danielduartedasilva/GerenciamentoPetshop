@@ -64,26 +64,30 @@ class AnimalController {
         msg: "Está faltando o body da request!",
       });
     }
-    const { id } = request.params;
-    const { nome, cliente } = request.body;
-
+    //const { id } = request.params;
+    const { _id,nome, tipo } = request.body;
+    
     try {
-      const animal = await AnimalSchema.findOne({ _id: id });
+      const animal = await AnimalSchema.findOne({ _id: _id });
       if (animal != null) {
         const result = await AnimalSchema.updateOne(
-          { _id: id },
+          { _id: _id },
           {
             $set: {
               nome: nome,
-              cliente: cliente,
+              tipo: tipo,
             },
           }
         );
-        response.status(200).json({
-          data: result,
-          error: false,
-          msg: "Animal atualizado com sucesso!",
-        });
+        // response.status(200).json({
+        //   data: result,
+        //   error: false,
+        //   msg: "Animal atualizado com sucesso!",
+        // });
+        if(result != null){
+          console.log(result);
+          response.status(200).json(result);
+        }
       }
       response.status(404).json({
         data: animal,
@@ -96,6 +100,24 @@ class AnimalController {
         error: true,
         msg: "Animal não encontrado!",
       });
+    }
+  }
+
+  async apagarTudo(request: Request, response: Response) {
+    try {
+      const animal = await AnimalSchema.deleteMany();
+      if (animal != null) {
+        response
+          .status(200)
+          .json("Animais excluídos");
+      }
+      response
+        .status(400)
+        .json({ data: animal, error: false, msg: "animal não encontrado!" });
+    } catch (error) {
+      response
+        .status(400)
+        .json({ data: error, error: true, msg: "Formato de id não válido!" });
     }
   }
 }

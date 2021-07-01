@@ -19,7 +19,10 @@ export class AnimalService {
   }  
 
   listarPorId(id: string): Observable<Animal> {
-    return this.http.get<Animal>(`${this.baseUrl}animal/listar/:id`); // ----------------------------equivalente a let url = "http://localhost:3000/" + "animal/listar/";
+    return this.http.get<Animal>(`${this.baseUrl}animal/listar/${id}`); // ----------------------------equivalente a let url = "http://localhost:3000/" + "animal/listar/";
+  }
+  atualizarAnimal(animal:Animal){
+    return this.http.put<Animal>(`${this.baseUrl}animal/alterar`,animal);
   }
 }
 
