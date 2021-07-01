@@ -66,7 +66,7 @@ class AnimalController {
     }
     //const { id } = request.params;
     const { _id,nome, tipo } = request.body;
-    
+    console.log(request.body);
     try {
       const animal = await AnimalSchema.findOne({ _id: _id });
       if (animal != null) {
@@ -77,7 +77,7 @@ class AnimalController {
               nome: nome,
               tipo: tipo,
             },
-          }
+          },
         );
         // response.status(200).json({
         //   data: result,
@@ -85,16 +85,16 @@ class AnimalController {
         //   msg: "Animal atualizado com sucesso!",
         // });
         if(result != null){
-          console.log(result);
           response.status(200).json(result);
         }
+        response.status(404).json({
+          data: animal,
+          error: true,
+          msg: "Animal não encontrado!",
+        });
       }
-      response.status(404).json({
-        data: animal,
-        error: true,
-        msg: "Animal não encontrado!",
-      });
-    } catch (err) {
+    }
+    catch (err) {
       response.status(200).json({
         data: err,
         error: true,

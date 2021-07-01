@@ -33,13 +33,13 @@
                                     [(ngModel)]="enderecoCliente" />
                             </mat-form-field>  
 
-                            <div *ngIf="!alterar;else atualizarCliente">
+                            <div *ngIf="!alterarCLi;else atualizarCliente">
                                 <button mat-button color="primary" (click)="adicionarCliente()">
                                     Adicionar cliente
                                 </button>
                             </div>
                             <ng-template #atualizarCliente>
-                                <button mat-button color="primary" (click)="adicionarCliente()">
+                                <button mat-button color="primary" (click)="updateCliente()">
                                     Atualizar cliente
                                 </button>
                             </ng-template>
@@ -78,7 +78,7 @@
                               </mat-form-field>
 
                             
-                            <div *ngIf="!alterar;else atualizar">
+                            <div *ngIf="!alterarAni;else atualizar">
                                 <button mat-button color="primary" (click)="adicionarAnimal()">Adicionar
                                     Animal
                                 </button>

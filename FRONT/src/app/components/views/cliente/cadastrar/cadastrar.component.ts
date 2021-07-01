@@ -15,6 +15,8 @@ import { AnimalService } from 'src/app/services/animal.service';
 export class CadastrarClienteComponent implements OnInit {
   colunasAnimal = ["nomeAnimal", "tipoAnimal", "editar"];
 
+  alterarCLi: boolean = false;
+  alterarAni: boolean = false;
   alterar: boolean = false;
 
   cliente = new Cliente();
@@ -24,12 +26,12 @@ export class CadastrarClienteComponent implements OnInit {
   telefoneCliente!: string;
   enderecoCliente!: string;
   animalCliente!: string;
-
-
+  
   idAnimal!: string;
   nomeAnimal!: string;
   tipoAnimal!: string;
-  
+
+  animalTemp = new Animal();
   //clientes = new MatTableDataSource<Cliente>();
   animais = new MatTableDataSource<Animal>();
 
@@ -43,50 +45,55 @@ export class CadastrarClienteComponent implements OnInit {
 
   ngOnInit(): void {
     let id = this.route.snapshot.paramMap.get('id');
-    
+
     if (id != null) {
+      this.idCliente = id;
       this.carregarDados(id);
-      
+    }
+    if(this.alterarCLi == true){
+      this.alterar = true;
+    }else{
+      this.alterar = false;
     }
   }
-  carregarDados(id:string){
-    this.alterar = true;
+  carregarDados(id: string) {
+    this.alterarCLi = true;
     this.service.procurarClientePorID(id).subscribe((cliente) => {
       this.cliente = cliente;
       this.nomeCliente = cliente.nome;
       this.cpfCliente = cliente.cpf;
       this.telefoneCliente = cliente.telefone;
-      this.enderecoCliente = cliente.endereco; 
+      this.enderecoCliente = cliente.endereco;
     });
-    //
-    this.serviceAnimal.listar().subscribe(listaAnimais=>{
-        listaAnimais.forEach(el =>{
-          if(el.cliente == this.cliente._id){
-            console.log("entrou...");
-            this.animais.data.push(el);
-            this.animais._updateChangeSubscription();
-          } 
-        });
+    //busca alista de animais gerais
+    this.serviceAnimal.listar().subscribe(listaAnimais => {
+      listaAnimais.forEach(el => {
+        //carrega os animais do cliente
+        if (el.cliente == this.cliente._id) {
+          this.animais.data.push(el);
+          this.animais._updateChangeSubscription();
+        }
       });
+    });
   }
-  cadastrar(): void {
-    this.alterar = false;
+  cadastrar(): void {    
+    this.alterarCLi = false;
 
     this.nomeCliente = "";
     this.cpfCliente = "";
     this.telefoneCliente = "";
     this.enderecoCliente = "";
-    
-    try {      
-        this.snack.open("Cadastro realizado", "Cliente", {
-          duration: 6000,
-          horizontalPosition: "right",
-          verticalPosition: "top",
-        });      
+
+    try {
+      this.snack.open("Cadastro realizado", "Cliente", {
+        duration: 6000,
+        horizontalPosition: "right",
+        verticalPosition: "top",
+      });
     } catch (error) {
       console.log(error);
     }
-    
+
     //this.router.navigate([""]);
   }
   adicionarCliente() {
@@ -112,15 +119,31 @@ export class CadastrarClienteComponent implements OnInit {
       });
     }
   }
-  atualizarCliente() {
+  updateCliente(){    
+    this.cliente._id = this.idCliente;
+    this.cliente.nome = this.nomeCliente;
+    this.cliente.cpf = this.cpfCliente;
+    this.cliente.telefone = this.telefoneCliente;
+    this.cliente.endereco = this.enderecoCliente;
+    
+    this.service.atualizaCliente(this.cliente).subscribe(()=>{
+      this.snack.open("Cliente atualizado", "Cliente", {
+        duration: 4000,
+        horizontalPosition: "right",
+        verticalPosition: "top",
+      });
+    });
+    this.nomeCliente     = this.cliente.nome;
+    this.cpfCliente      = this.cliente.cpf;
+    this.telefoneCliente = this.cliente.telefone;
+    this.enderecoCliente = this.cliente.endereco;
+    this.router.navigate(['cliente/listar']);
 
-  }
-  alterarCliente(cliente: Cliente) {
-
+    this.alterarCLi = false;
   }
 
   adicionarAnimal() {
-    let animalTemp = new Animal();  
+    let animalTemp = new Animal();
     animalTemp.nome = this.nomeAnimal;
     animalTemp.tipo = this.tipoAnimal;
     animalTemp.cliente = this.cliente._id;
@@ -136,29 +159,41 @@ export class CadastrarClienteComponent implements OnInit {
       });
     });
     //limpa os campos
-    this.nomeAnimal = ""; 
+    this.nomeAnimal = "";
     this.tipoAnimal = "";
   }
-  alterarAnimal(animal:Animal) {
+  alterarAnimal(animal: Animal) {
     this.idAnimal = animal._id;
-    this.nomeAnimal = animal.nome; 
-    this.tipoAnimal = animal.tipo;
+    this.nomeAnimal = animal.nome;
+    this.tipoAnimal = animal.tipo;    
   }
-  atualizarAnimal(){
-    this.animais.data.forEach(animal =>{
-      if(animal._id === this.idAnimal)
-      {
-        //this.animais = new MatTableDataSource<Animal>(animal);
-        this.serviceAnimal.atualizarAnimal(animal).subscribe(el =>{
-          this.snack.open("Animal atualizado", "Animal", {
-            duration: 3000,
-            horizontalPosition: "right",
-            verticalPosition: "top",
-          });
+  atualizarAnimal() {
+    this.animalTemp.nome = this.nomeAnimal;  
+    this.animalTemp.tipo = this.tipoAnimal;
+    this.animalTemp._id  = this.idAnimal;
 
-        });
-          
-      }
+    let animalTemp: Animal[] = [];
+    this.serviceAnimal.atualizarAnimal(this.animalTemp).subscribe(() => {
+      this.snack.open("Animal atualizado", "Animal", {
+        duration: 3000,
+        horizontalPosition: "right",
+        verticalPosition: "top",
+      });
+    });    
+    
+    this.serviceAnimal.listar().subscribe(el =>{
+      el.forEach(animal=>{
+        if(animal.cliente == this.cliente._id){
+          animalTemp.push(animal);                    
+        }
+      });
+    }); 
+    
+    this.animais = new MatTableDataSource<Animal>(animalTemp);
+    animalTemp.forEach(lista=>{
+      this.animais.data.push(lista);
     });
-  }
+    this.animais._updateChangeSubscription();    
+    this.alterarAni = false;
+  }//fim atualizarAnimal
 }

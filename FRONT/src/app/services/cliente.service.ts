@@ -21,6 +21,6 @@ export class ClienteService {
   }
   
   atualizaCliente(cliente: Cliente): Observable<Cliente>{
-    return this.http.put<Cliente>(`${this.baseUrl}cliente/alterar/${cliente._id}`,cliente);
+    return this.http.put<Cliente>(`${this.baseUrl}cliente/alterar`,cliente);
   }
 }
