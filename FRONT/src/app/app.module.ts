@@ -27,6 +27,7 @@ import { CadastrarAnimalComponent } from './components/views/animal/cadastrar/ca
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { ListarComponent } from './components/views/procedimento/listar/listar.component';
 import { CadastrarComponent } from './components/views/procedimento/cadastrar/cadastrar.component';
+import { AtendimentoComponent } from './components/views/atendimento/atendimento.component';
 
 
 
@@ -42,7 +43,8 @@ import { CadastrarComponent } from './components/views/procedimento/cadastrar/ca
     ClienteListarComponent,
     CadastrarAnimalComponent,
     ListarComponent,
-    CadastrarComponent
+    CadastrarComponent,
+    AtendimentoComponent
 
   ],
   imports: [

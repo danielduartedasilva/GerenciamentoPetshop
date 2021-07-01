@@ -1,0 +1,61 @@
+<mat-card>
+    <mat-card-title> Novo procedimento </mat-card-title>
+    <mat-card-content>
+
+        <div class="externo">
+            <div class="interno">
+                <mat-card>
+                    <mat-card-title> Adicionar procedimento </mat-card-title>
+                    <mat-card-content>
+
+                        <div class="conteudo-cliente">
+                            
+                            <mat-form-field>
+                                <mat-label>Cliente</mat-label>
+                                <select matNativeControl [(ngModel)]="clientes">
+                                  <option *ngFor="let lista of clientes" value={{lista.nome}}>
+                                    {{lista.nome}}
+                                  </option>
+                                </select>
+                            </mat-form-field>
+
+                            <mat-form-field>
+                                <mat-label>Funcionário</mat-label>
+                                <select matNativeControl [(ngModel)]="funcionarios">
+                                  <option *ngFor="let lista of funcionarios" value={{lista.nome}}>
+                                    {{lista.nome}}
+                                  </option>
+                                </select>
+                            </mat-form-field>
+
+                            <mat-form-field>
+                                <mat-label>Animal</mat-label>
+                                <select matNativeControl [(ngModel)]="animais">
+                                  <option *ngFor="let lista of animais" value={{lista.nome}}>
+                                    {{lista.nome}}
+                                  </option>
+                                </select>
+                            </mat-form-field>
+
+                            <mat-form-field>
+                                <mat-label>Procedimento</mat-label>
+                                <select matNativeControl [(ngModel)]="procedimentos">
+                                  <option *ngFor="let lista of procedimentos" value={{lista.nome}}>
+                                    {{lista.nome}}
+                                  </option>
+                                </select>
+                            </mat-form-field>
+                        </div> 
+                                             
+                    </mat-card-content>                    
+                </mat-card>               
+            </div>
+        </div>
+
+        <!-- <mat-card-actions>
+            <button mat-raised-button color="warn" (click)="cadastrar()" [disabled]="alterar">Cadastrar</button>
+            <a mat-stroked-button routerLink="/cliente/listar"> Listar Clientes </a>
+        </mat-card-actions> -->
+
+    </mat-card-content>
+</mat-card>

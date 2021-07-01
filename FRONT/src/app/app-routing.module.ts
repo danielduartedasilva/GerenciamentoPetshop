@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { CadastrarAnimalComponent } from './components/views/animal/cadastrar/cadastrar.component';
+import { AtendimentoComponent } from './components/views/atendimento/atendimento.component';
 import { CadastrarClienteComponent } from './components/views/cliente/cadastrar/cadastrar.component';
 import { ClienteListarComponent } from './components/views/cliente/listar/listar.component';
 import { FuncionarioCadastrarComponent } from './components/views/funcionario/cadastrar/cadastrar.component';
@@ -47,8 +48,11 @@ const routes: Routes = [
   {
     path: 'procedimento/cadastrar',
     component: CadastrarComponent
+  },
+  {
+    path: 'atendimento/cadastrar',
+    component: AtendimentoComponent
   }
-  
 ];
 
 @NgModule({
