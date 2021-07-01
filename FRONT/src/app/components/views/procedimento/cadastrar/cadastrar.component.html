@@ -1,18 +1,53 @@
 <mat-card>
-    <mat-card-title>Novo Procedimento</mat-card-title>
+    <mat-card-title> Novo Cliente </mat-card-title>
     <mat-card-content>
-        <mat-form-field>
-            <mat-label for="nome" >Nome</mat-label>
-            <input matInput placeholder="Nome" type="text" name="nome" [(ngModel)]="nome">
-        </mat-form-field>
-        <mat-form-field>
-            <mat-label for="valor" >Valor</mat-label>
-            <input matInput placeholder="Valor" type="number" name="valor" [(ngModel)]="valor">
-        </mat-form-field>
-        
-        <div class="actions">
-            <button mat-raised-button color="primary" (click)="cadastrar()">Cadastrar</button>
-            <a mat-stroked-button routerLink="">Listar Procedimentos</a>
+
+        <div class="externo">
+            <div class="interno">
+                <mat-card>
+                    <mat-card-title> Adicionar Procedimento </mat-card-title>
+                    <mat-card-content>
+                        <div class="conteudo-cliente">
+                            <mat-form-field>
+                                <mat-label for="nome">Nome</mat-label>
+                                <input matInput placeholder="Nome" type="text" name="nome" [(ngModel)]="nome">
+                            </mat-form-field>
+                            <mat-form-field>
+                                <mat-label for="valor">Valor</mat-label>
+                                <input matInput placeholder="Valor" type="number" name="valor" [(ngModel)]="valor">
+                            </mat-form-field>
+
+                            <div>
+                                <button mat-button color="primary" (click)="adicionarProcedimento()">
+                                    Adicionar
+                                    procedimento
+                                </button>
+                            </div>
+
+                        </div>
+                        <table mat-table [dataSource]="procedimentos" class="mat-elevation-z8">
+                            <ng-container matColumnDef="nomeProcedimento">
+                                <th mat-header-cell *matHeaderCellDef>Nome do procedimento</th>
+                                <td mat-cell *matCellDef="let procedimento">{{ procedimento.nome }}</td>
+                            </ng-container>
+                            <ng-container matColumnDef="valorProcedimento">
+                                <th mat-header-cell *matHeaderCellDef>Valor do procedimento</th>
+                                <td mat-cell *matCellDef="let procedimento">{{ procedimento.valor }}</td>
+                            </ng-container>
+
+
+                            <tr mat-header-row *matHeaderRowDef="colunasProcedimento"></tr>
+                            <tr mat-row *matRowDef="let row; columns: colunasProcedimento"></tr>
+                        </table>
+                    </mat-card-content>
+                </mat-card>
+            </div>
         </div>
+
+        <mat-card-actions>
+            <button mat-raised-button color="warn" (click)="cadastrar()">Cadastrar</button>
+            <a mat-stroked-button routerLink="/procedimento/listar"> Listar Clientes </a>
+        </mat-card-actions>
+
     </mat-card-content>
 </mat-card>

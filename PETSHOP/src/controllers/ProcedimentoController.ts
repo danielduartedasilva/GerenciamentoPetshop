@@ -9,20 +9,21 @@ class ProcedimentoController {
         msg: "Está faltando o body da request!",
       });
     }
-    const { nome } = request.body;
+    //const { nome, valor } = request.body;
 
     try {
-      const procedimento = await ProcedimentoSchema.findOne({ nome: nome });
-      if (procedimento == null) {
-        const result = await ProcedimentoSchema.create(procedimento);//no lugar de procedimento estava request.body
-        response.status(201).json(procedimento);
+      //const procedimento = await ProcedimentoSchema.findOne({ nome: nome });
+     // if (procedimento == null) {
+        const result = await ProcedimentoSchema.create(request.body);//no lugar de procedimento estava request.body
+        if(result){
+        response.status(201).json(result);
         //   data: result,
         //   error: false,
         //   msg: "Procedimento cadastrado com sucesso!",
         // });
-      }
+        }
       response.status(404).json({
-        data: procedimento,
+        data: result,
         error: true,
         msg: "Procedimento já cadastrado no sistema!",
       });
@@ -38,17 +39,13 @@ class ProcedimentoController {
   async listar(request: Request, response: Response) {
     try {
       const procedimentos = await ProcedimentoSchema.find();
-      // response.status(200).json({
-      //   data: procedimentos,
-      //   error: false,
-      //   msg: "Lista de procedimentos atualizada!",
-      // });
+      response.status(200).json(procedimentos);
     } catch (error) {
-      // response.status(400).json({
-      //   data: error,
-      //   error: true,
-      //   msg: "Não foi possível listar os procedimentos.",
-      // });
+      response.status(400).json({
+        data: error,
+        error: true,
+        msg: "Não foi possível listar os procedimentos.",
+      });
     }
   }
 

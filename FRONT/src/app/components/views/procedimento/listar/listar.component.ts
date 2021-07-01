@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MatTableDataSource } from '@angular/material/table';
 import { Procedimento } from 'src/app/models/Procedimento';
 import { ProcedimentoService } from 'src/app/services/procedimento.service';
 
@@ -8,13 +9,15 @@ import { ProcedimentoService } from 'src/app/services/procedimento.service';
   styleUrls: ['./listar.component.css']
 })
 export class ListarComponent implements OnInit {
-  procedimentos: Procedimento[] = [];
-  constructor(private servive: ProcedimentoService) { }
+  procedimentos!: MatTableDataSource<Procedimento>;
+  procedimentoColunas: string[] = ['id','nome','valor','criadoEm'];
+
+  constructor(private service: ProcedimentoService) { }
 
   ngOnInit(): void {
-        this.servive.listar().subscribe((procedimentos) => {
-        this.procedimentos = procedimentos;
-      });
+    this.service.listar().subscribe((procedimentos) => {
+      this.procedimentos = new MatTableDataSource<Procedimento>(procedimentos);
+    });
   }
 
 }

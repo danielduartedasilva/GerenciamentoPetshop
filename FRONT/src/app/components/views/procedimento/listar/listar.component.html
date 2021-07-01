@@ -1,18 +1,28 @@
-<a mat-raised-button color="primary" routerLink="/procedimento/cadastrar">
-    <mat-icon>shower</mat-icon>Novo Procedimento </a>
-<table>
-    <thead>
-        <tr>
-            <th>Id</th>
-            <th>Nome</th>
-            <th>Valor</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr *ngFor="let procedimento of procedimentos">
-            <td>{{ procedimento._id }}</td>
-            <td>{{ procedimento.nome }}</td>
-            <td>{{ procedimento.valor }}</td>
-        </tr>
-    </tbody>
+<table mat-table [dataSource]="procedimentos" class="mat-elevation-z8">
+
+    <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef> # </th>
+        <td mat-cell *matCellDef="let procedimento"> {{procedimento._id}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="nome">
+        <th mat-header-cell *matHeaderCellDef> Nome </th>
+        <td mat-cell *matCellDef="let procedimento"> {{ procedimento.nome}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="valor">
+        <th mat-header-cell *matHeaderCellDef> Valor </th>
+        <td mat-cell *matCellDef="let procedimento"> {{ procedimento.valor}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="criadoEm">
+        <th mat-header-cell *matHeaderCellDef> Criado em </th>
+        <td mat-cell *matCellDef="let procedimento"> {{ procedimento.createdAt | date: "dd/MM/yyyy HH:mm:ss" }} </td>
+    </ng-container>
+
+
+
+
+    <tr mat-header-row *matHeaderRowDef="procedimentoColunas"></tr>
+    <tr mat-row *matRowDef="let row; columns: procedimentoColunas;"></tr>
 </table>
